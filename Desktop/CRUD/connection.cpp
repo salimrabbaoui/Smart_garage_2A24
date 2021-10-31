@@ -13,9 +13,10 @@ db.setUserName("system");//inserer nom de l'utilisateur
 db.setPassword("azer");//inserer mot de passe de cet utilisateur
 
 if (db.open())
+{
 test=true;
 
-
+}
 
 
 

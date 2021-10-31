@@ -45,12 +45,12 @@ QSqlQueryModel* Etudiant :: afficher()
     return model;
 
 }
-bool Etudiant ::supprimer(int id)
+bool Etudiant::supprimer(int id)
 {
 
     QSqlQuery query;
 
-    query.prepare("Delete from etudiant id=:id");
+    query.prepare("Delete from etudiant where id=:id");
     query.bindValue(0, id);
 
     return query.exec();
