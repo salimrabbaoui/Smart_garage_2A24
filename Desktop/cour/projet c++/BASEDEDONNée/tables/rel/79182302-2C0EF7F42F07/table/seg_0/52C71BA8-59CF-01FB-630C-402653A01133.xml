@@ -1,0 +1,126 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="52C71BA8-59CF-01FB-630C-402653A01133" schemaObject="D0019702-DE2D-38BE-A42B-88AC84A4A00B" name="EMPLOYÉE">
+<sourceConnName>test-bd</sourceConnName>
+<sourceObjSchema>SYSTEM</sourceObjSchema>
+<sourceObjName>EMPLOYÉE</sourceObjName>
+<createdBy>msi</createdBy>
+<createdTime>2021-10-31 16:05:13 UTC</createdTime>
+<ownerDesignName>tables</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_EMPLOYÉ" id="61DF2AAB-E241-3D7C-0F11-781E2526FF9B">
+<sourceConnName>test-bd</sourceConnName>
+<sourceObjSchema>EMPLOYÉE</sourceObjSchema>
+<sourceObjName>ID_EMPLOYÉ</sourceObjName>
+<createdBy>msi</createdBy>
+<createdTime>2021-10-31 16:05:13 UTC</createdTime>
+<ownerDesignName>tables</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NOM" id="E7649BAA-4A12-6B0F-35F8-6BEC87CC8151">
+<sourceConnName>test-bd</sourceConnName>
+<sourceObjSchema>EMPLOYÉE</sourceObjSchema>
+<sourceObjName>NOM</sourceObjName>
+<createdBy>msi</createdBy>
+<createdTime>2021-10-31 16:05:13 UTC</createdTime>
+<ownerDesignName>tables</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<ownDataTypeParameters>20 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRENOM" id="D230BFDA-73C7-079C-3235-C33529AD57F3">
+<sourceConnName>test-bd</sourceConnName>
+<sourceObjSchema>EMPLOYÉE</sourceObjSchema>
+<sourceObjName>PRENOM</sourceObjName>
+<createdBy>msi</createdBy>
+<createdTime>2021-10-31 16:05:13 UTC</createdTime>
+<ownerDesignName>tables</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<ownDataTypeParameters>20 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NOMBRE_HEURES" id="BA489EAB-67FC-5DB6-3C88-542385803783">
+<sourceConnName>test-bd</sourceConnName>
+<sourceObjSchema>EMPLOYÉE</sourceObjSchema>
+<sourceObjName>NOMBRE_HEURES</sourceObjName>
+<createdBy>msi</createdBy>
+<createdTime>2021-10-31 16:05:13 UTC</createdTime>
+<ownerDesignName>tables</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ADRESSE_MAIL" id="39CF1561-B069-96ED-5922-22F97E872D00">
+<sourceConnName>test-bd</sourceConnName>
+<sourceObjSchema>EMPLOYÉE</sourceObjSchema>
+<sourceObjName>ADRESSE_MAIL</sourceObjName>
+<createdBy>msi</createdBy>
+<createdTime>2021-10-31 16:05:13 UTC</createdTime>
+<ownerDesignName>tables</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<ownDataTypeParameters>20 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NUM8TELEPHONE" id="2CF64B56-851B-A667-7E97-9AD27D91956B">
+<sourceConnName>test-bd</sourceConnName>
+<sourceObjSchema>EMPLOYÉE</sourceObjSchema>
+<sourceObjName>NUM8TELEPHONE</sourceObjName>
+<createdBy>msi</createdBy>
+<createdTime>2021-10-31 16:05:13 UTC</createdTime>
+<ownerDesignName>tables</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<ownDataTypeParameters>20 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="203CF7BF-4A38-5B50-F58A-E4E7FCD5C79A" name="EMPLOYÉE_PK">
+<sourceConnName>test-bd</sourceConnName>
+<sourceObjSchema>SYSTEM</sourceObjSchema>
+<sourceObjName>EMPLOYÉE_PK</sourceObjName>
+<createdBy>msi</createdBy>
+<createdTime>2021-10-31 16:05:13 UTC</createdTime>
+<ownerDesignName>tables</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="61DF2AAB-E241-3D7C-0F11-781E2526FF9B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4C5D858D-E464-2899-D6B8-73B2D38E7D06" schemaObject="D0019702-DE2D-38BE-A42B-88AC84A4A00B" name="EMPLOYÉE_PK">
+<sourceConnName>test-bd</sourceConnName>
+<sourceObjSchema>SYSTEM</sourceObjSchema>
+<sourceObjName>EMPLOYÉE_PK</sourceObjName>
+<createdBy>msi</createdBy>
+<createdTime>2021-10-31 16:05:13 UTC</createdTime>
+<ownerDesignName>tables</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="61DF2AAB-E241-3D7C-0F11-781E2526FF9B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

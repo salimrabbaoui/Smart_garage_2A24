@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="tables" id="19C238DA-5AEC-59A0-E5EB-A0BFB559E848" version="3.5">
+<createdBy>msi</createdBy>
+<createdTime>2021-10-31 15:37:57 UTC</createdTime>
+<ownerDesignName>tables</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>19C238DA-5AEC-59A0-E5EB-A0BFB559E848</designId>
+</OSDM_Design>
