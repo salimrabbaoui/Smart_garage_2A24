@@ -8,8 +8,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->le_Cin->setValidator(  new QIntValidator(000, 99999999, this));
-    ui->le_Num->setValidator(  new QIntValidator(000, 99999999, this));
+    ui->le_Cin->setValidator(  new QIntValidator(11111111, 99999999, this));
+    ui->le_Num->setValidator(  new QIntValidator(11111111, 99999999, this));
     ui->tab_Client->setModel(C.afficher());
 }
 

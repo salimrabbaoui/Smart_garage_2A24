@@ -61,8 +61,8 @@ model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
 model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM "));
 model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
 model->setHeaderData(3, Qt::Horizontal, QObject::tr("ADRESSE_MAIL"));
-model->setHeaderData(4, Qt::Horizontal, QObject::tr("ADRESSE_CLIENT"));
-model->setHeaderData(5, Qt::Horizontal, QObject::tr("NUM_CLIENT"));
+model->setHeaderData(5, Qt::Horizontal, QObject::tr("ADRESSE_CLIENT"));
+model->setHeaderData(4, Qt::Horizontal, QObject::tr("NUM_CLIENT"));
     return model;
 }
 bool Client::supprimer(int cin)
@@ -80,7 +80,7 @@ QString cin_string= QString::number(cin);
 QString num_string=QString::number(Num);
 query.prepare("Update Client set CIN = :id,NOM =:n, PRENOM = :pr ,NUM_CLIENT = :nm ,ADRESSE_CLIENT = :ac ,ADRESSE_MAIL=:am where CIN = :id ");
 query.bindValue(":id", cin_string);
-query.bindValue("::n", nom);
+query.bindValue(":n", nom);
 query.bindValue(":pr", prenom);
 query.bindValue(":nm",num_string );
 query.bindValue(":ac", adresse);
