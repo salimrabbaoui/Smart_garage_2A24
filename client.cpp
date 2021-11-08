@@ -87,3 +87,17 @@ query.bindValue(":ac", adresse);
 query.bindValue(":am", adresse_mail);
 return    query.exec();
 }
+QSqlQueryModel * Client::rechercher(QString rech)
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+    QString recher="select * from Client where NOM like '%"+rech+"%' or PRENOM like '%"+rech+"%'";
+    model->setQuery(recher);
+    return model;
+}
+
+QSqlQueryModel * Client::tri()
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+        model->setQuery("SELECT * FROM Client ORDER BY CIN");
+        return model;
+}

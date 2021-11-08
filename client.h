@@ -23,6 +23,8 @@ public:
     bool supprimer(int);
     bool modifier(int);
      QSqlQueryModel * afficher();
+     QSqlQueryModel * rechercher(QString);
+     QSqlQueryModel * tri();
 
 private:
     int Cin,Num;
