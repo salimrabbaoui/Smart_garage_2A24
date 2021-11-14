@@ -44,6 +44,8 @@ private slots:
 
     void on_le_recherche_textChanged(const QString &arg1);
 
+    void mailSent(QString status);
+
 private:
     Ui::MainWindow *ui;
     Client C;

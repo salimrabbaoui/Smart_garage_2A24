@@ -4,6 +4,7 @@
 #include<QObject>
 #include<QDebug>
 #include<QRegularExpression>
+#include <QSystemTrayIcon>
 Client::Client()
 {
 Cin=0;

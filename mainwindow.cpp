@@ -13,6 +13,9 @@
 #include <QPainter>
 #include <QDesktopServices>
 #include <QUrl>
+#include <QtNetwork>
+#include <QSslSocket>
+#include "smtp.h"
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -183,6 +186,10 @@ void MainWindow::on_pushButton_8_clicked()
        QMessageBox::information(nullptr, QObject::tr("Passer une commande"),
                                 QObject::tr("La commande est validée. Un courrier a été envoyé à cet email: ")+
                          QObject::tr(email), QMessageBox::Ok);
+       Smtp* smtp = new Smtp("aura.forgetpass@gmail.com","Service100a","smtp.gmail.com",465);
+              connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
+
+              smtp->sendMail("aura.forgetpass@gmail.com",findClient.value(0).toString(),"Passage de commande","Votre commande a été validée.");
    } else {
        QMessageBox::warning(nullptr, QObject::tr("Passer une commande"),
                          QObject::tr("Veuillez verifier les informations saisis"), QMessageBox::Cancel);
@@ -246,4 +253,10 @@ void MainWindow::on_pushButton_10_clicked()
 void MainWindow::on_le_recherche_textChanged(const QString &recherche)
 {
     ui->tab_Client->setModel(C.rechercher(recherche));
+}
+
+void MainWindow::mailSent(QString status)
+{
+    if(status == "Message sent")
+        QMessageBox::information(nullptr, tr( "Message Envoyé" ), tr( "Votre message a été envoyé" ) );
 }
