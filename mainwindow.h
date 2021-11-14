@@ -4,8 +4,9 @@
 #include <QMainWindow>
 #include"client.h"
 
+
 namespace Ui {
-class MainWindow;
+class  MainWindow;
 }
 
 class MainWindow : public QMainWindow
@@ -22,6 +23,20 @@ private slots:
     void on_pb_supp_clicked();
 
     void on_pushButton_2_clicked();
+
+    void on_tab_Client_activated(const QModelIndex &index);
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_4_clicked();
+
+    void on_pushButton_5_clicked();
+
+    void on_pushButton_6_clicked();
+
+    void on_pushButton_7_clicked();
+
+    void on_pushButton_8_clicked();
 
 private:
     Ui::MainWindow *ui;

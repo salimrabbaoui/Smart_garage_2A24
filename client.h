@@ -22,9 +22,13 @@ public:
     bool ajouter();
     bool supprimer(int);
     bool modifier(int);
+    bool Email_validation(QString email);
      QSqlQueryModel * afficher();
      QSqlQueryModel * rechercher(QString);
      QSqlQueryModel * tri();
+     QSqlQueryModel * tricroissant();
+     QSqlQueryModel * trideccroissant();
+     QSqlQueryModel * stat();
 
 private:
     int Cin,Num;

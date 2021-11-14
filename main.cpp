@@ -2,11 +2,13 @@
 #include <QApplication>
 #include <QMessageBox>
 #include "connection.h"
+#include "client.h"
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
     Connection c;
+    //Client C;
     bool test=c.createconnect();
     if(test)
     {w.show();
@@ -20,7 +22,7 @@ int main(int argc, char *argv[])
                     QObject::tr("connection failed.\n"
                                 "Click Cancel to exit."), QMessageBox::Cancel);
 
-
+w.show();
 
     return a.exec();
 }

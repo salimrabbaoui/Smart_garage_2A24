@@ -3,6 +3,7 @@
 #include <QSqlQueryModel>
 #include<QObject>
 #include<QDebug>
+#include<QRegularExpression>
 Client::Client()
 {
 Cin=0;
@@ -56,12 +57,12 @@ bool Client::ajouter()
 QSqlQueryModel * Client::afficher()
 {QSqlQueryModel * model= new QSqlQueryModel();
 
-model->setQuery("select * from Client");
+model->setQuery("select * from CLIENT");
 model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
 model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM "));
 model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
-model->setHeaderData(3, Qt::Horizontal, QObject::tr("ADRESSE_MAIL"));
-model->setHeaderData(5, Qt::Horizontal, QObject::tr("ADRESSE_CLIENT"));
+model->setHeaderData(5, Qt::Horizontal, QObject::tr("ADRESSE_MAIL"));
+model->setHeaderData(3, Qt::Horizontal, QObject::tr("ADRESSE_CLIENT"));
 model->setHeaderData(4, Qt::Horizontal, QObject::tr("NUM_CLIENT"));
     return model;
 }
@@ -94,10 +95,62 @@ QSqlQueryModel * Client::rechercher(QString rech)
     model->setQuery(recher);
     return model;
 }
+QSqlQueryModel * Client::tricroissant()
+{QSqlQueryModel * model= new QSqlQueryModel();
+
+model->setQuery("select * FROM Client ORDER BY cin ASC");
+model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
+model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM "));
+model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
+model->setHeaderData(5, Qt::Horizontal, QObject::tr("ADRESSE_MAIL"));
+model->setHeaderData(3, Qt::Horizontal, QObject::tr("ADRESSE_CLIENT"));
+model->setHeaderData(4, Qt::Horizontal, QObject::tr("NUM_CLIENT"));
+
+    return model;
+}
+QSqlQueryModel * Client::trideccroissant()
+{QSqlQueryModel * model= new QSqlQueryModel();
+    model->setQuery("select * FROM Client ORDER BY cin DESC");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM "));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("ADRESSE_MAIL"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("ADRESSE_CLIENT"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("NUM_CLIENT"));
+return model;
+}
+
 
 QSqlQueryModel * Client::tri()
 {
     QSqlQueryModel * model= new QSqlQueryModel();
-        model->setQuery("SELECT * FROM Client ORDER BY CIN");
+        model->setQuery("SELECT * FROM Client ORDER BY NOM");
         return model;
+}
+
+bool Client::Email_validation(QString email)
+
+ {
+     bool retorno = true;
+
+     qDebug() << email;
+
+     QRegularExpression regex("^[0-9a-zA-Z]+([0-9a-zA-Z]*[-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z]*[.])[a-zA-Z]{2,6}$");
+
+     if(!regex.match(email).hasMatch())
+     {
+         retorno = false;
+     }
+
+     return retorno;
+ }
+QSqlQueryModel * Client::stat()
+{
+    QSqlQueryModel * model=new QSqlQueryModel();
+       model->setQuery("select ADRESSE_CLIENT,(count(ADRESSE_CLIENT)*100/ (select count(*)from Client)) as pourcentage from CLIENT group by ADRESSE_CLIENT");
+       model->setHeaderData(0,Qt::Horizontal,QObject::tr("ADRESSE_CLIENT"));
+       model->setHeaderData(1,Qt::Horizontal,QObject::tr("percentage"));
+       return model;
+
+
 }
