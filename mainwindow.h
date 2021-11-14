@@ -46,6 +46,10 @@ private slots:
 
     void mailSent(QString status);
 
+    void on_tab_Client_modif_activated(const QModelIndex &index);
+
+    void on_pushButton_11_clicked();
+
 private:
     Ui::MainWindow *ui;
     Client C;

@@ -29,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->le_nom->setValidator(new QRegularExpressionValidator(rx1, this));
     ui->le_prenom->setValidator(new QRegularExpressionValidator(rx1, this));
     ui->tab_Client->setModel(C.afficher());
+    ui->tab_Client_modif->setModel(C.afficher());
 }
 
 MainWindow::~MainWindow()
@@ -86,11 +87,12 @@ void MainWindow::on_pb_supp_clicked()
     QMessageBox msgBox;
     if(test){
         ui->tab_Client->setModel(C.afficher());
+        ui->tab_Client_modif->setModel(C.afficher());
         msgBox.setText("suppression avec succés");
 
     }
     else
-        msgBox.setText("echeck d'suppression");
+        msgBox.setText("echec de suppression");
     msgBox.exec();
 }
 
@@ -98,49 +100,38 @@ void MainWindow::on_pb_supp_clicked()
 void MainWindow::on_pushButton_2_clicked()
 {
 
-    int id = ui->le_Cin->text().toInt();
-        QString adresse= ui->le_adresse->text();
-        QString nom= ui->le_nom->text();
-        QString prenom= ui->le_prenom->text();
-        int num = ui->le_Num->text().toInt();
-        QString adresse_Mail= ui->le_ad_mail->text();
+    int id = ui->lineEdit_CIN->text().toInt();
+        QString adresse= ui->lineEdit_AD->text();
+        QString nom= ui->lineEdit_NOM->text();
+        QString prenom= ui->lineEdit_PR->text();
+        int num = ui->lineEdit_NUM->text().toInt();
+        QString adresse_Mail= ui->lineEdit_AM->text();
+    if(num == 0 || nom == NULL || prenom == NULL || adresse == NULL || adresse_Mail == NULL) {
+        QMessageBox::warning(nullptr, QObject::tr("modifier un client"),
+                          QObject::tr("Les informations saisies sont manquantes. Veuillez verifié !"), QMessageBox::Cancel);
+    } else {
 
      Client c(id,nom,prenom,num,adresse,adresse_Mail);
      bool mail=c.Email_validation(adresse_Mail);
-      QMessageBox msgBox;
-          if(mail)
-                  {
-      bool test=c.modifier(id);
-      if(test)
-    {
-
+     QMessageBox msgBox;
+     if(mail) {
+        bool test=c.modifier(id);
+        if(test) {
+          ui->tab_Client_modif->setModel(C.afficher());
           ui->tab_Client->setModel(C.afficher());
           QMessageBox::information(nullptr, QObject::tr("modifier un client"),
                             QObject::tr("client modifié.\n"
                                         "Click Cancel to exit."), QMessageBox::Cancel);
-      }
-      else
+        } else {
           QMessageBox::critical(nullptr, QObject::tr("modifier un client"),
                             QObject::tr("Erreur !.\n"
                                         "Click Cancel to exit."), QMessageBox::Cancel);
-          }
-          else
-
+        }
+       } else
               QMessageBox::critical(nullptr, QObject::tr("Not Ok"),
                                 QObject::tr("Erreur Check Mail!.\n"
                                             "Click Cancel to exit."), QMessageBox::Cancel);
-}
-
-
-void MainWindow::on_tab_Client_activated(const QModelIndex &index)
-{
-
-    ui->le_Cin->setText(ui->tab_Client->model()->data(ui->tab_Client->model()->index(index.row(),0)).toString());
-    ui->le_Num->setText(ui->tab_Client->model()->data(ui->tab_Client->model()->index(index.row(),4)).toString());
-    ui->le_nom->setText(ui->tab_Client->model()->data(ui->tab_Client->model()->index(index.row(),1)).toString());
-    ui->le_prenom->setText(ui->tab_Client->model()->data(ui->tab_Client->model()->index(index.row(),2)).toString());
-     ui->le_ad_mail->setText(ui->tab_Client->model()->data(ui->tab_Client->model()->index(index.row(),5)).toString());
-     ui->le_adresse->setText(ui->tab_Client->model()->data(ui->tab_Client->model()->index(index.row(),3)).toString());
+    }
 }
 
 void MainWindow::on_pushButton_3_clicked()
@@ -174,8 +165,9 @@ void MainWindow::on_pushButton_8_clicked()
    QString num=ui->le_PC_CIN->text();
    QString voiture=ui->le_PC_typevoiture->text();
    QSqlQuery findClient;
+   QString nom_client;
    QSqlQuery findCar;
-   findClient.prepare("select ADRESSE_MAIL from CLIENT Where CIN=:n");
+   findClient.prepare("select ADRESSE_MAIL, NOM from CLIENT Where CIN=:n");
    findClient.bindValue(":n", num);
    findClient.exec();
    findCar.prepare("select TYPE_VOITURE from VOITURE Where TYPE_VOITURE='"+voiture+"'");
@@ -183,13 +175,16 @@ void MainWindow::on_pushButton_8_clicked()
    if (findClient.next() && findCar.next()) {
        const char* email = new char { };
        email = findClient.value(0).toString().toStdString().c_str();
+       nom_client = findClient.value(1).toString();
        QMessageBox::information(nullptr, QObject::tr("Passer une commande"),
                                 QObject::tr("La commande est validée. Un courrier a été envoyé à cet email: ")+
                          QObject::tr(email), QMessageBox::Ok);
        Smtp* smtp = new Smtp("aura.forgetpass@gmail.com","Service100a","smtp.gmail.com",465);
               connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
 
-              smtp->sendMail("aura.forgetpass@gmail.com",findClient.value(0).toString(),"Passage de commande","Votre commande a été validée.");
+              smtp->sendMail("aura.forgetpass@gmail.com",findClient.value(0).toString(),
+                             "Validation de commande",
+                             "Bonjour Monsieur/Madame "+nom_client+", \n\nVotre commande pour la voiture de type "+voiture+" a été validée. \n\nCordialement, \nService client.");
    } else {
        QMessageBox::warning(nullptr, QObject::tr("Passer une commande"),
                          QObject::tr("Veuillez verifier les informations saisis"), QMessageBox::Cancel);
@@ -259,4 +254,19 @@ void MainWindow::mailSent(QString status)
 {
     if(status == "Message sent")
         QMessageBox::information(nullptr, tr( "Message Envoyé" ), tr( "Votre message a été envoyé" ) );
+}
+
+void MainWindow::on_tab_Client_modif_activated(const QModelIndex &index)
+{
+    ui->lineEdit_CIN->setText(ui->tab_Client_modif->model()->data(ui->tab_Client_modif->model()->index(index.row(),0)).toString());
+    ui->lineEdit_NUM->setText(ui->tab_Client_modif->model()->data(ui->tab_Client_modif->model()->index(index.row(),4)).toString());
+    ui->lineEdit_NOM->setText(ui->tab_Client_modif->model()->data(ui->tab_Client_modif->model()->index(index.row(),1)).toString());
+    ui->lineEdit_PR->setText(ui->tab_Client_modif->model()->data(ui->tab_Client_modif->model()->index(index.row(),2)).toString());
+    ui->lineEdit_AM->setText(ui->tab_Client_modif->model()->data(ui->tab_Client_modif->model()->index(index.row(),5)).toString());
+    ui->lineEdit_AD->setText(ui->tab_Client_modif->model()->data(ui->tab_Client_modif->model()->index(index.row(),3)).toString());
+}
+
+void MainWindow::on_pushButton_11_clicked()
+{
+    ui->tab_Client_modif->setModel(C.afficher());
 }

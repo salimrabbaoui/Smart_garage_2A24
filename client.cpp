@@ -5,6 +5,7 @@
 #include<QDebug>
 #include<QRegularExpression>
 #include <QSystemTrayIcon>
+#include <QMessageBox>
 Client::Client()
 {
 Cin=0;
@@ -69,25 +70,33 @@ model->setHeaderData(4, Qt::Horizontal, QObject::tr("NUM_CLIENT"));
 }
 bool Client::supprimer(int cin)
 {
-    QSqlQuery query;
-    query.prepare("DELETE from CLIENT Where CIN=:c");
-    query.bindValue(":c", cin);
-    return query.exec();
-
+    QSqlQuery testSupressionClient;
+    testSupressionClient.prepare("select * from CLIENT Where CIN=:c");
+    testSupressionClient.bindValue(":c", cin);
+    testSupressionClient.exec();
+    if(testSupressionClient.next()){
+        QSqlQuery query;
+        query.prepare("DELETE from CLIENT Where CIN=:c");
+        query.bindValue(":c", cin);
+        return query.exec();
+    } else {
+        return false;
+    }
 }
 bool Client::modifier(int cin)
 {
-QSqlQuery query;
-QString cin_string= QString::number(cin);
-QString num_string=QString::number(Num);
-query.prepare("Update Client set CIN = :id,NOM =:n, PRENOM = :pr ,NUM_CLIENT = :nm ,ADRESSE_CLIENT = :ac ,ADRESSE_MAIL=:am where CIN = :id ");
-query.bindValue(":id", cin_string);
-query.bindValue(":n", nom);
-query.bindValue(":pr", prenom);
-query.bindValue(":nm",num_string );
-query.bindValue(":ac", adresse);
-query.bindValue(":am", adresse_mail);
-return    query.exec();
+    QMessageBox msgBox;
+    QSqlQuery query;
+    QString cin_string= QString::number(cin);
+    QString num_string=QString::number(Num);
+    query.prepare("Update Client set NOM =:n, PRENOM = :pr ,NUM_CLIENT = :nm ,ADRESSE_CLIENT = :ac ,ADRESSE_MAIL=:am where CIN = :id ");
+    query.bindValue(":id", cin_string);
+    query.bindValue(":n", nom);
+    query.bindValue(":pr", prenom);
+    query.bindValue(":nm",num_string );
+    query.bindValue(":ac", adresse);
+    query.bindValue(":am", adresse_mail);
+    return query.exec();
 }
 QSqlQueryModel * Client::rechercher(QString rech)
 {
