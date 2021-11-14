@@ -38,6 +38,12 @@ private slots:
 
     void on_pushButton_8_clicked();
 
+    void on_pushButton_9_clicked();
+
+    void on_pushButton_10_clicked();
+
+    void on_le_recherche_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     Client C;

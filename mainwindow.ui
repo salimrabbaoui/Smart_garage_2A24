@@ -45,7 +45,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_4">
        <attribute name="title">
@@ -303,6 +303,42 @@
          <string>Statistic</string>
         </property>
        </widget>
+       <widget class="QPushButton" name="pushButton_9">
+        <property name="geometry">
+         <rect>
+          <x>260</x>
+          <y>430</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Generer PDF</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_10">
+        <property name="geometry">
+         <rect>
+          <x>900</x>
+          <y>20</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>rechercher</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="le_recherche">
+        <property name="geometry">
+         <rect>
+          <x>380</x>
+          <y>20</y>
+          <width>501</width>
+          <height>22</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_5">
        <attribute name="title">
@@ -333,7 +369,7 @@
           <string>CIN</string>
          </property>
         </widget>
-        <widget class="QLineEdit" name="le_PC_Cin">
+        <widget class="QLineEdit" name="le_PC_CIN">
          <property name="geometry">
           <rect>
            <x>140</x>
@@ -581,7 +617,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_8">
        <attribute name="title">

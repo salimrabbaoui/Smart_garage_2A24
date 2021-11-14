@@ -8,6 +8,13 @@
 #include<QIntValidator>
 #include <QSqlQuery>
 #include <QDebug>
+#include<iostream>
+#include <QPdfWriter>
+#include <QPainter>
+#include <QDesktopServices>
+#include <QUrl>
+using namespace std;
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -161,21 +168,82 @@ void MainWindow::on_pushButton_7_clicked()
 
 void MainWindow::on_pushButton_8_clicked()
 {
-   QString cin=ui->le_PC_Cin->text();
+   QString num=ui->le_PC_CIN->text();
    QString voiture=ui->le_PC_typevoiture->text();
    QSqlQuery findClient;
    QSqlQuery findCar;
-   findClient.prepare("select CIN from CLIENT Where CIN=:c");
-   findClient.bindValue(":c", cin);
+   findClient.prepare("select ADRESSE_MAIL from CLIENT Where CIN=:n");
+   findClient.bindValue(":n", num);
    findClient.exec();
    findCar.prepare("select TYPE_VOITURE from VOITURE Where TYPE_VOITURE='"+voiture+"'");
    findCar.exec();
    if (findClient.next() && findCar.next()) {
+       const char* email = new char { };
+       email = findClient.value(0).toString().toStdString().c_str();
        QMessageBox::information(nullptr, QObject::tr("Passer une commande"),
-                         QObject::tr("La commande est validée"), QMessageBox::Cancel);
+                                QObject::tr("La commande est validée. Un courrier a été envoyé à cet email: ")+
+                         QObject::tr(email), QMessageBox::Ok);
    } else {
        QMessageBox::warning(nullptr, QObject::tr("Passer une commande"),
                          QObject::tr("Veuillez verifier les informations saisis"), QMessageBox::Cancel);
    }
 
+}
+
+void MainWindow::on_pushButton_9_clicked()
+{
+    QPdfWriter pdf("PdfCLient.pdf");
+                  QPainter painter(&pdf);
+                 int i = 4000;
+                      painter.setPen(Qt::blue);
+                      painter.setFont(QFont("Arial", 30));
+                      painter.drawText(2300,1200,"Liste Des Clients");
+                      painter.setPen(Qt::black);
+                      painter.setFont(QFont("Arial", 50));
+                      painter.drawRect(1500,200,7300,2600);
+                      painter.drawRect(0,3000,9600,500);
+                      painter.setFont(QFont("Arial", 9));
+                      painter.drawText(300,3300,"cin");
+                      painter.drawText(2300,3300,"nom");
+                      painter.drawText(4300,3300,"prenom");
+                      painter.drawText(6300,3300,"adresse");
+
+
+
+                      QSqlQuery query;
+                      query.prepare("select * from CLIENT");
+                      query.exec();
+                      while (query.next())
+                      {
+                          painter.drawText(300,i,query.value(0).toString());
+                          painter.drawText(2300,i,query.value(1).toString());
+                          painter.drawText(4300,i,query.value(2).toString());
+                          painter.drawText(6300,i,query.value(3).toString());
+
+
+
+                         i = i +500;
+                      }
+                      int reponse = QMessageBox::question(this, "Génerer PDF", "<PDF Enregistré>...Vous Voulez Affichez Le PDF ?", QMessageBox::Yes |  QMessageBox::No);
+                          if (reponse == QMessageBox::Yes)
+                          {
+                              QDesktopServices::openUrl(QUrl::fromLocalFile("PdfCLient.pdf"));
+
+                              painter.end();
+                          }
+                          if (reponse == QMessageBox::No)
+                          {
+                               painter.end();
+                          }
+}
+
+void MainWindow::on_pushButton_10_clicked()
+{
+    QString recherche=ui->le_recherche->text();
+    ui->tab_Client->setModel(C.rechercher(recherche));
+}
+
+void MainWindow::on_le_recherche_textChanged(const QString &recherche)
+{
+    ui->tab_Client->setModel(C.rechercher(recherche));
 }

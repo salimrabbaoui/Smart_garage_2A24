@@ -91,7 +91,7 @@ return    query.exec();
 QSqlQueryModel * Client::rechercher(QString rech)
 {
     QSqlQueryModel * model= new QSqlQueryModel();
-    QString recher="select * from Client where NOM like '%"+rech+"%' or PRENOM like '%"+rech+"%'";
+    QString recher="select * from Client where NOM like '%"+rech+"%' or PRENOM like '%"+rech+"%' or CIN like '%"+rech+"%'";
     model->setQuery(recher);
     return model;
 }
