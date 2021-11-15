@@ -150,7 +150,7 @@ void fournisseur::statistique(QVector<double>* ticks,QVector<QString> *labels)
 {
     QSqlQuery q;
     int i=0;
-    q.exec("select * from FOURNISSEUR");
+    q.exec("select type_voiture from FOURNISSEUR");
     while (q.next())
     {
         QString identifiant = q.value(0).toString();

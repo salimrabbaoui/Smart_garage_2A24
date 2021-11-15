@@ -660,7 +660,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;
 border-color: rgb(0, 0, 0);</string>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="tab_16">
           <attribute name="title">

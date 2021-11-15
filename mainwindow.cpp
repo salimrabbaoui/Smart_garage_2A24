@@ -364,7 +364,7 @@ void MainWindow::on_tabWidget_4_currentChanged(int index)
               amande->setAntialiased(false);
               amande->setStackingGap(1);
                //couleurs
-              amande->setName("Repartition des produit selon fournisseur");
+              amande->setName("Repartition des voitures selon fournisseur");
               amande->setPen(QPen(QColor(0, 168, 140).lighter(130)));
               amande->setBrush(QColor(0, 168, 140));
 
@@ -403,7 +403,7 @@ void MainWindow::on_tabWidget_4_currentChanged(int index)
               // ajout des données  (statistiques du fournisseur)//
 
               QVector<double> PlaceData;
-              QSqlQuery q1("select * from FOURNISSEUR");
+              QSqlQuery q1("select type_voiture from FOURNISSEUR");
               while (q1.next()) {
                             int  nbr_fautee = q1.value(0).toInt();
                             PlaceData<< nbr_fautee;
