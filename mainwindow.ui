@@ -725,14 +725,17 @@ font: 63 16pt &quot;Yu Gothic UI&quot;;</string>
           <attribute name="title">
            <string>Statistique</string>
           </attribute>
-          <widget class="QCustomPlot" name="plot" native="true">
+          <widget class="QCustomPlot" name="plott" native="true">
            <property name="geometry">
             <rect>
-             <x>140</x>
-             <y>30</y>
-             <width>691</width>
-             <height>401</height>
+             <x>20</x>
+             <y>20</y>
+             <width>1081</width>
+             <height>421</height>
             </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 0);</string>
            </property>
           </widget>
          </widget>

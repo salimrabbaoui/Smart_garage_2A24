@@ -34,6 +34,7 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     connection.cpp \
+    qcustomplot.cpp \
     smtp.cpp
 
 HEADERS += \
@@ -41,6 +42,7 @@ HEADERS += \
     fournisseur.h \
         mainwindow.h \
     connection.h \
+    qcustomplot.h \
     smtp.h
 
 FORMS += \

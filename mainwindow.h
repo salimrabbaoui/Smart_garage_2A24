@@ -11,6 +11,7 @@
 #include <QtWidgets/QMessageBox>
 #include <QFileDialog>
 #include "facture.h"
+#include "qcustomplot.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -44,6 +45,8 @@ private slots:
     void on_SuppFacture_clicked();
     void on_ModiFacture_clicked();
     void on_pushButton_clicked();
+
+    void on_tabWidget_4_currentChanged(int index);
 
 private:
     Ui::MainWindow *ui;
