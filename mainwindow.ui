@@ -660,7 +660,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;
 border-color: rgb(0, 0, 0);</string>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="tab_16">
           <attribute name="title">
@@ -1198,6 +1198,9 @@ font: 63 16pt &quot;Yu Gothic UI&quot;;</string>
              <height>20</height>
             </rect>
            </property>
+           <property name="text">
+            <string>pes201456a</string>
+           </property>
           </widget>
           <widget class="QLineEdit" name="rcpt">
            <property name="geometry">
@@ -1207,6 +1210,9 @@ font: 63 16pt &quot;Yu Gothic UI&quot;;</string>
              <width>241</width>
              <height>20</height>
             </rect>
+           </property>
+           <property name="text">
+            <string>hiimouss@gmail.com</string>
            </property>
           </widget>
           <widget class="QPushButton" name="exitBtn">
@@ -1260,7 +1266,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
             </rect>
            </property>
            <property name="text">
-            <string>qtprojet2020@gmail.com</string>
+            <string>qtprojet7@gmail.com</string>
            </property>
           </widget>
           <widget class="QLineEdit" name="subject">
@@ -1414,6 +1420,11 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
              <width>241</width>
              <height>141</height>
             </rect>
+           </property>
+           <property name="plainText">
+            <string>aaaa
+
+</string>
            </property>
           </widget>
          </widget>
