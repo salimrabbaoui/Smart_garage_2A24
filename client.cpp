@@ -154,13 +154,16 @@ bool Client::Email_validation(QString email)
 
      return retorno;
  }
-QSqlQueryModel * Client::stat()
+void Client::statistique(QVector<double>* ticks,QVector<QString> *labels)
 {
-    QSqlQueryModel * model=new QSqlQueryModel();
-       model->setQuery("select ADRESSE_CLIENT,(count(ADRESSE_CLIENT)*100/ (select count(*)from Client)) as pourcentage from CLIENT group by ADRESSE_CLIENT");
-       model->setHeaderData(0,Qt::Horizontal,QObject::tr("ADRESSE_CLIENT"));
-       model->setHeaderData(1,Qt::Horizontal,QObject::tr("percentage"));
-       return model;
-
-
+    QSqlQuery q;
+    int i=0;
+    q.exec("select ADRESSE_CLIENT,(count(ADRESSE_CLIENT)*100/ (select count(*)from Client)) as pourcentage from CLIENT group by ADRESSE_CLIENT");
+    while (q.next())
+    {
+        QString identifiant = q.value(0).toString();
+        i++;
+        *ticks<<i;
+        *labels <<identifiant;
+    }
 }

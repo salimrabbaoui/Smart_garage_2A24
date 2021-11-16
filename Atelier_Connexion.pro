@@ -4,9 +4,11 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql
+QT       += core gui sql \
+    quick
 QT += core gui network
 QT += network
+QT +=printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -31,12 +33,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     connection.cpp \
+    qcustomplot.cpp \
     smtp.cpp
 
 HEADERS += \
     client.h \
         mainwindow.h \
     connection.h \
+    qcustomplot.h \
     smtp.h
 
 FORMS += \

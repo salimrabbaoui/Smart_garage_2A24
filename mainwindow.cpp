@@ -26,10 +26,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->le_Cin->setValidator(  new QIntValidator(11111111, 99999999, this));
     ui->le_Num->setValidator(  new QIntValidator(11111111, 99999999, this));
     QRegularExpression rx1("\\b[A-Z._%+-]+@[A-Z.-]+\\.[A-Z]\\b",QRegularExpression::CaseInsensitiveOption);
-    ui->le_nom->setValidator(new QRegularExpressionValidator(rx1, this));
-    ui->le_prenom->setValidator(new QRegularExpressionValidator(rx1, this));
+    ui->le_nom->setValidator(new QRegularExpressionValidator(rx1 , this));
+    ui->le_prenom->setValidator(new QRegularExpressionValidator(rx1 , this));
     ui->tab_Client->setModel(C.afficher());
     ui->tab_Client_modif->setModel(C.afficher());
+    QSqlQueryModel * model= new QSqlQueryModel();
+    model->setQuery("select * from CLIENT");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
+    ui->comboBox_CIN->setModel(model);
 }
 
 MainWindow::~MainWindow()
@@ -155,14 +159,14 @@ void MainWindow::on_pushButton_6_clicked()
     ui->tab_Client->setModel(C.tri());
 }
 
-void MainWindow::on_pushButton_7_clicked()
+/*void MainWindow::on_pushButton_7_clicked()
 {
     ui->tab_Client->setModel(C.stat());
-}
+}*/
 
 void MainWindow::on_pushButton_8_clicked()
 {
-   QString num=ui->le_PC_CIN->text();
+   QString num=ui->comboBox_CIN->currentText();
    QString voiture=ui->le_PC_typevoiture->text();
    QSqlQuery findClient;
    QString nom_client;
@@ -266,7 +270,79 @@ void MainWindow::on_tab_Client_modif_activated(const QModelIndex &index)
     ui->lineEdit_AD->setText(ui->tab_Client_modif->model()->data(ui->tab_Client_modif->model()->index(index.row(),3)).toString());
 }
 
-void MainWindow::on_pushButton_11_clicked()
+/*void MainWindow::on_pushButton_11_clicked()
 {
     ui->tab_Client_modif->setModel(C.afficher());
+}*/
+
+void MainWindow::on_tabWidget_2_currentChanged(int index)
+{
+    Client C;
+        // background //
+                  QLinearGradient gradient(0, 0, 0, 400);
+                  gradient.setColorAt(0, QColor(90, 90, 90));
+                  gradient.setColorAt(0.38, QColor(105, 105, 105));
+                  gradient.setColorAt(1, QColor(70, 70, 70));
+                  ui->plott->setBackground(QBrush(gradient));
+
+                  QCPBars *amande = new QCPBars(ui->plott->xAxis, ui->plott->yAxis);
+                  amande->setAntialiased(false);
+                  amande->setStackingGap(1);
+                   //couleurs
+                  amande->setName("Repartition des voitures selon fournisseur");
+                  amande->setPen(QPen(QColor(0, 168, 140).lighter(130)));
+                  amande->setBrush(QColor(0, 168, 140));
+
+                   //axe des abscisses
+
+
+                  QSharedPointer<QCPAxisTickerText> textTicker(new QCPAxisTickerText);
+                  ui->plott->xAxis->setTicker(textTicker);
+                  ui->plott->xAxis->setTickLabelRotation(60);
+                  ui->plott->xAxis->setSubTicks(false);
+                  ui->plott->xAxis->setTickLength(0, 4);
+                  ui->plott->xAxis->setRange(0, 100);
+                  ui->plott->xAxis->setBasePen(QPen(Qt::white));
+                  ui->plott->xAxis->setTickPen(QPen(Qt::white));
+                  ui->plott->xAxis->grid()->setVisible(true);
+                  ui->plott->xAxis->grid()->setPen(QPen(QColor(130, 130, 130), 0, Qt::DotLine));
+                  ui->plott->xAxis->setTickLabelColor(Qt::white);
+                  ui->plott->xAxis->setLabelColor(Qt::white);
+
+                  // axe des ordonnées
+                  ui->plott->yAxis->setRange(0,100);
+                  ui->plott->yAxis->setPadding(5);
+                  ui->plott->yAxis->setLabel("Statistiques");
+                  ui->plott->yAxis->setBasePen(QPen(Qt::white));
+                  ui->plott->yAxis->setTickPen(QPen(Qt::white));
+                  ui->plott->yAxis->setSubTickPen(QPen(Qt::white));
+                  ui->plott->yAxis->grid()->setSubGridVisible(true);
+                  ui->plott->yAxis->setTickLabelColor(Qt::white);
+                  ui->plott->yAxis->setLabelColor(Qt::white);
+                  ui->plott->yAxis->grid()->setPen(QPen(QColor(130, 130, 130), 0, Qt::SolidLine));
+                  ui->plott->yAxis->grid()->setSubGridPen(QPen(QColor(130, 130, 130), 0, Qt::DotLine));
+
+                  // ajout des données  (statistiques du fournisseur)//
+
+                  QVector<double> PlaceData;
+                  QVector<double> ticks;
+                  QVector<QString> labels;
+                  QSqlQuery q1("select ADRESSE_CLIENT,(count(ADRESSE_CLIENT)*100/ (select count(*)from Client)) as pourcentage from CLIENT group by ADRESSE_CLIENT");
+                  while (q1.next()) {
+                                int  nbr_fautee = q1.value(1).toInt();
+                                PlaceData<< nbr_fautee;
+                                QString label = q1.value(0).toString();
+                                labels << label;
+                  }
+                  textTicker->addTicks({10,20,30,40,50,60,70,80,90,100}, labels);
+                  amande->setData({10,20,30,40,50,60,70,80,90,100}, PlaceData);
+
+                  ui->plott->legend->setVisible(true);
+                  ui->plott->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignTop|Qt::AlignHCenter);
+                  ui->plott->legend->setBrush(QColor(255, 255, 255, 100));
+                  ui->plott->legend->setBorderPen(Qt::NoPen);
+                  QFont legendFont = font();
+                  legendFont.setPointSize(5);
+                  ui->plott->legend->setFont(legendFont);
+                  ui->plott->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
 }

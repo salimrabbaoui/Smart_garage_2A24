@@ -28,7 +28,7 @@ public:
      QSqlQueryModel * tri();
      QSqlQueryModel * tricroissant();
      QSqlQueryModel * trideccroissant();
-     QSqlQueryModel * stat();
+     void statistique(QVector<double>* ticks,QVector<QString> *labels);
 
 private:
     int Cin,Num;
