@@ -1,7 +1,26 @@
 #ifndef EMPLOYE_H
 #define EMPLOYE_H
-#include <QString>
+#include<QString>
+#include<QSqlQueryModel>
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+#include <QSqlQuery>
 #include <QSqlQueryModel>
+#include <QString>
+#include<QSqlDatabase>
+#include "conge.h"
+#include <QDate>
+#include <QDateTime>
+#include <QString>
+#include <QDialog>
+#include <QSqlQueryModel>
+#include <QMessageBox>
+#include <QSqlQuery>
+#include <QFile>
+#include <QTextStream>
+#include <windows.h>
+
+
 
 class Employe
 {
@@ -16,14 +35,26 @@ public:
     QString gettype();
 
     void setcin(int);
-    void setage(int);
     void setNom(QString);
     void setPrenom(QString);
+    void setage(int);
     void setType(QString);
 
+    bool supprimer(int);
     bool ajouter();
+    bool modifier(int);
      QSqlQueryModel*afficher();
-     bool supprimer(int);
+     void recherche(Ui::MainWindow *ui);
+    // QSqlQueryModel * afficherOrderedList();
+     //QSqlQuery *afficherEmployeList();
+     //QSqlQuery *trier_liste_Employe();
+
+
+    /* QSqlQueryModel * recherche(QString a);
+     QSqlQueryModel * afficherOrderedList(); // planing */
+     QSqlQueryModel* afficher_CIN();
+     QSqlQueryModel* afficher_Nom();
+     QSqlQueryModel* afficher_SERVICE();
 
 
 private:
