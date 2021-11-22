@@ -26,9 +26,7 @@ public:
 
 private slots:
 
-    void sendMail();
-    void mailSent(QString);
-    void browse();
+
 
     void on_pb_ajouter_clicked();
 
@@ -41,12 +39,22 @@ private slots:
     void on_connecter_clicked();
     void on_sendBtn_clicked();
 
-    void on_ajoutFacture_clicked();
-    void on_SuppFacture_clicked();
-    void on_ModiFacture_clicked();
+    void on_ajoutFacture_2_clicked();
+    void on_SuppFacture_2_clicked();
+    void on_ModiFacture_2_clicked();
     void on_pushButton_clicked();
 
     void on_tabWidget_4_currentChanged(int index);
+
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_4_clicked();
+    void on_pushButton_5_clicked();
+
+
+    void on_tabWidget_33_currentChanged(int index);
 
 private:
     Ui::MainWindow *ui;

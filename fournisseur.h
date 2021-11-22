@@ -37,6 +37,8 @@ public:
     bool modifier(int);
     void recherche(Ui::MainWindow *ui) ;
     void statistique(QVector<double>* ticks,QVector<QString> *labels);
+QSqlQueryModel * trieid();
+QSqlQueryModel * trietype_voiture();
 
 private:
     int num ,id;

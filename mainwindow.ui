@@ -180,7 +180,7 @@ color: rgb(85, 85, 0);
 font: 16pt &quot;Palatino Linotype&quot;;</string>
        </property>
        <property name="currentIndex">
-        <number>4</number>
+        <number>6</number>
        </property>
        <widget class="QWidget" name="tab_8">
         <attribute name="title">
@@ -287,6 +287,9 @@ gridline-color: rgb(0, 0, 0);</string>
            <height>31</height>
           </rect>
          </property>
+         <property name="text">
+          <string/>
+         </property>
         </widget>
         <widget class="QLabel" name="label_11">
          <property name="geometry">
@@ -375,10 +378,10 @@ gridline-color: rgb(0, 0, 0);</string>
         <widget class="QTableView" name="tab_fournisseur">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>20</x>
            <y>40</y>
-           <width>1100</width>
-           <height>381</height>
+           <width>981</width>
+           <height>251</height>
           </rect>
          </property>
          <property name="sizePolicy">
@@ -401,6 +404,69 @@ gridline-color: rgb(0, 0, 0);</string>
          </property>
          <property name="wordWrap">
           <bool>false</bool>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="comboBox">
+         <property name="geometry">
+          <rect>
+           <x>680</x>
+           <y>360</y>
+           <width>161</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <item>
+          <property name="text">
+           <string>id</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>type_voiture</string>
+          </property>
+         </item>
+        </widget>
+        <widget class="QPushButton" name="pushButton_3">
+         <property name="geometry">
+          <rect>
+           <x>520</x>
+           <y>360</y>
+           <width>151</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>trier</string>
+         </property>
+        </widget>
+        <widget class="QTableView" name="tableView_tri">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>300</y>
+           <width>471</width>
+           <height>171</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="exitBtn_8">
+         <property name="geometry">
+          <rect>
+           <x>860</x>
+           <y>360</y>
+           <width>181</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-color: rgb(0, 0, 0);</string>
+         </property>
+         <property name="text">
+          <string>Quitter</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>:/images/images/remove.png</normaloff>:/images/images/remove.png</iconset>
          </property>
         </widget>
        </widget>
@@ -635,799 +701,511 @@ gridline-color: rgb(0, 0, 0);</string>
          </property>
         </widget>
        </widget>
-       <widget class="QWidget" name="tab_3">
+       <widget class="QWidget" name="tab_4">
         <attribute name="title">
-         <string>Options</string>
+         <string>Recherche fournisseur</string>
         </attribute>
-        <widget class="QTabWidget" name="tabWidget_4">
+        <widget class="QPushButton" name="exitBtn_6">
+         <property name="geometry">
+          <rect>
+           <x>530</x>
+           <y>370</y>
+           <width>141</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Quitter</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>:/images/images/remove.png</normaloff>:/images/images/remove.png</iconset>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="lineEdit_recherche_1">
+         <property name="geometry">
+          <rect>
+           <x>950</x>
+           <y>50</y>
+           <width>201</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Rechercher</string>
+         </property>
+        </widget>
+        <widget class="QTableView" name="tab_fournisseur_1">
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>10</y>
-           <width>1221</width>
-           <height>471</height>
+           <y>100</y>
+           <width>1141</width>
+           <height>261</height>
           </rect>
          </property>
-         <property name="minimumSize">
-          <size>
-           <width>661</width>
-           <height>351</height>
-          </size>
+         <property name="styleSheet">
+          <string notr="true">
+font: 63 16pt &quot;Yu Gothic UI&quot;;</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineEdit_recherche">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>50</y>
+           <width>901</width>
+           <height>41</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tab_5">
+        <attribute name="title">
+         <string>Facture</string>
+        </attribute>
+        <widget class="QPushButton" name="pushButton_4">
+         <property name="geometry">
+          <rect>
+           <x>540</x>
+           <y>290</y>
+           <width>151</width>
+           <height>71</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Mailling</string>
+         </property>
+        </widget>
+        <widget class="QGroupBox" name="groupBox_7">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>270</y>
+           <width>331</width>
+           <height>161</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>MS Shell Dlg 2</family>
+           <pointsize>8</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+          </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">color: rgb(85, 85, 0);
-font: 12pt &quot;MS Shell Dlg 2&quot;;
-border-color: rgb(0, 0, 0);</string>
+          <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
          </property>
-         <property name="currentIndex">
-          <number>3</number>
+         <property name="title">
+          <string>Modification</string>
          </property>
-         <widget class="QWidget" name="tab_16">
-          <attribute name="title">
-           <string>Rechercher fournisseur</string>
-          </attribute>
-          <widget class="QLineEdit" name="lineEdit_recherche">
-           <property name="geometry">
-            <rect>
-             <x>20</x>
-             <y>10</y>
-             <width>901</width>
-             <height>41</height>
-            </rect>
-           </property>
-          </widget>
-          <widget class="QPushButton" name="lineEdit_recherche_1">
-           <property name="geometry">
-            <rect>
-             <x>960</x>
-             <y>10</y>
-             <width>201</width>
-             <height>41</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>Rechercher</string>
-           </property>
-          </widget>
-          <widget class="QTableView" name="tab_fournisseur_1">
-           <property name="geometry">
-            <rect>
-             <x>20</x>
-             <y>60</y>
-             <width>1141</width>
-             <height>261</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">
-font: 63 16pt &quot;Yu Gothic UI&quot;;</string>
-           </property>
-          </widget>
-          <widget class="QPushButton" name="exitBtn_6">
-           <property name="geometry">
-            <rect>
-             <x>540</x>
-             <y>330</y>
-             <width>141</width>
-             <height>41</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>Quitter</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>:/images/images/remove.png</normaloff>:/images/images/remove.png</iconset>
-           </property>
-          </widget>
+         <widget class="QLabel" name="label_27">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>71</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Num Facture</string>
+          </property>
          </widget>
-         <widget class="QWidget" name="tab_18">
-          <attribute name="title">
-           <string>Statistique</string>
-          </attribute>
-          <widget class="QCustomPlot" name="plott" native="true">
-           <property name="geometry">
-            <rect>
-             <x>20</x>
-             <y>20</y>
-             <width>1081</width>
-             <height>421</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">color: rgb(255, 255, 0);</string>
-           </property>
-          </widget>
+         <widget class="QComboBox" name="comboBox_3">
+          <property name="geometry">
+           <rect>
+            <x>80</x>
+            <y>20</y>
+            <width>69</width>
+            <height>22</height>
+           </rect>
+          </property>
          </widget>
-         <widget class="QWidget" name="tab_19">
-          <attribute name="title">
-           <string>Facture</string>
-          </attribute>
-          <widget class="QPushButton" name="pushButton">
-           <property name="geometry">
-            <rect>
-             <x>770</x>
-             <y>290</y>
-             <width>301</width>
-             <height>71</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>IMPORTER FICHIER EXCEL</string>
-           </property>
-          </widget>
-          <widget class="QGroupBox" name="groupBox_8">
-           <property name="geometry">
-            <rect>
-             <x>70</x>
-             <y>189</y>
-             <width>331</width>
-             <height>71</height>
-            </rect>
-           </property>
-           <property name="font">
-            <font>
-             <family>MS Shell Dlg 2</family>
-             <pointsize>8</pointsize>
-             <weight>50</weight>
-             <italic>false</italic>
-             <bold>false</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
-           </property>
-           <property name="title">
-            <string>Suppression</string>
-           </property>
-           <widget class="QLabel" name="label_24">
-            <property name="geometry">
-             <rect>
-              <x>20</x>
-              <y>30</y>
-              <width>81</width>
-              <height>16</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>Num facture</string>
-            </property>
-           </widget>
-           <widget class="QComboBox" name="comboBox_4">
-            <property name="geometry">
-             <rect>
-              <x>100</x>
-              <y>30</y>
-              <width>69</width>
-              <height>22</height>
-             </rect>
-            </property>
-           </widget>
-           <widget class="QPushButton" name="SuppFacture">
-            <property name="geometry">
-             <rect>
-              <x>220</x>
-              <y>30</y>
-              <width>84</width>
-              <height>23</height>
-             </rect>
-            </property>
-            <property name="font">
-             <font>
-              <family>MS Shell Dlg 2</family>
-              <pointsize>8</pointsize>
-              <weight>50</weight>
-              <italic>false</italic>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton::hover
+         <widget class="QLabel" name="label_31">
+          <property name="geometry">
+           <rect>
+            <x>100</x>
+            <y>50</y>
+            <width>71</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Description</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_57">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>80</y>
+            <width>81</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>prixachat</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="PrixachatModpr_2">
+          <property name="geometry">
+           <rect>
+            <x>70</x>
+            <y>80</y>
+            <width>71</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_59">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>110</y>
+            <width>81</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>prixvente</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="PrixventeModfac_2">
+          <property name="geometry">
+           <rect>
+            <x>70</x>
+            <y>110</y>
+            <width>71</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="ModiFacture_2">
+          <property name="geometry">
+           <rect>
+            <x>180</x>
+            <y>120</y>
+            <width>121</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>MS Shell Dlg 2</family>
+            <pointsize>8</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton::hover
 {
 	background-color: qlineargradient(spread:pad, x1:0, y1:0.511, x2:1, y2:0.511, stop:0 rgba(0, 207, 179, 255),stop:1 rgb(108, 135, 255));
 
 }</string>
-            </property>
-            <property name="text">
-             <string>supprimer</string>
-            </property>
-           </widget>
-          </widget>
-          <widget class="QLabel" name="label_25">
-           <property name="geometry">
-            <rect>
-             <x>830</x>
-             <y>30</y>
-             <width>141</width>
-             <height>16</height>
-            </rect>
-           </property>
-           <property name="font">
-            <font>
-             <family>MS Shell Dlg 2</family>
-             <pointsize>12</pointsize>
-             <weight>50</weight>
-             <italic>false</italic>
-             <bold>false</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Affichage</string>
-           </property>
-          </widget>
-          <widget class="QGroupBox" name="groupBox_6">
-           <property name="geometry">
-            <rect>
-             <x>70</x>
-             <y>270</y>
-             <width>331</width>
-             <height>161</height>
-            </rect>
-           </property>
-           <property name="font">
-            <font>
-             <family>MS Shell Dlg 2</family>
-             <pointsize>8</pointsize>
-             <weight>50</weight>
-             <italic>false</italic>
-             <bold>false</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
-           </property>
-           <property name="title">
-            <string>Modification</string>
-           </property>
-           <widget class="QLabel" name="label_26">
-            <property name="geometry">
-             <rect>
-              <x>10</x>
-              <y>20</y>
-              <width>71</width>
-              <height>16</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>Num Facture</string>
-            </property>
-           </widget>
-           <widget class="QComboBox" name="comboBox_2">
-            <property name="geometry">
-             <rect>
-              <x>80</x>
-              <y>20</y>
-              <width>69</width>
-              <height>22</height>
-             </rect>
-            </property>
-           </widget>
-           <widget class="QLabel" name="label_28">
-            <property name="geometry">
-             <rect>
-              <x>100</x>
-              <y>50</y>
-              <width>71</width>
-              <height>16</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>Description</string>
-            </property>
-           </widget>
-           <widget class="QLabel" name="label_56">
-            <property name="geometry">
-             <rect>
-              <x>10</x>
-              <y>80</y>
-              <width>81</width>
-              <height>20</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>prixachat</string>
-            </property>
-           </widget>
-           <widget class="QLineEdit" name="PrixachatModpr">
-            <property name="geometry">
-             <rect>
-              <x>70</x>
-              <y>80</y>
-              <width>71</width>
-              <height>20</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-           <widget class="QLabel" name="label_58">
-            <property name="geometry">
-             <rect>
-              <x>10</x>
-              <y>110</y>
-              <width>81</width>
-              <height>20</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>prixvente</string>
-            </property>
-           </widget>
-           <widget class="QLineEdit" name="PrixventeModfac">
-            <property name="geometry">
-             <rect>
-              <x>70</x>
-              <y>110</y>
-              <width>71</width>
-              <height>20</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-           <widget class="QPushButton" name="ModiFacture">
-            <property name="geometry">
-             <rect>
-              <x>180</x>
-              <y>120</y>
-              <width>121</width>
-              <height>23</height>
-             </rect>
-            </property>
-            <property name="font">
-             <font>
-              <family>MS Shell Dlg 2</family>
-              <pointsize>8</pointsize>
-              <weight>50</weight>
-              <italic>false</italic>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton::hover
+          </property>
+          <property name="text">
+           <string>Valider modification</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>331</width>
+           <height>151</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>MS Shell Dlg 2</family>
+           <pointsize>8</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
+         </property>
+         <property name="title">
+          <string>Ajout</string>
+         </property>
+         <widget class="QLineEdit" name="NumFacAj_2">
+          <property name="geometry">
+           <rect>
+            <x>80</x>
+            <y>20</y>
+            <width>61</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_32">
+          <property name="geometry">
+           <rect>
+            <x>220</x>
+            <y>20</y>
+            <width>71</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Description</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_54">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>70</y>
+            <width>81</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>prixachat</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="ajoutFacture_2">
+          <property name="geometry">
+           <rect>
+            <x>220</x>
+            <y>110</y>
+            <width>91</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>MS Shell Dlg 2</family>
+            <pointsize>8</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton::hover
 {
 	background-color: qlineargradient(spread:pad, x1:0, y1:0.511, x2:1, y2:0.511, stop:0 rgba(0, 207, 179, 255),stop:1 rgb(108, 135, 255));
 
 }</string>
-            </property>
-            <property name="text">
-             <string>Valider modification</string>
-            </property>
-           </widget>
-          </widget>
-          <widget class="QGroupBox" name="groupBox">
-           <property name="geometry">
-            <rect>
-             <x>70</x>
-             <y>30</y>
-             <width>331</width>
-             <height>151</height>
-            </rect>
-           </property>
-           <property name="font">
-            <font>
-             <family>MS Shell Dlg 2</family>
-             <pointsize>8</pointsize>
-             <weight>50</weight>
-             <italic>false</italic>
-             <bold>false</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
-           </property>
-           <property name="title">
-            <string>Ajout</string>
-           </property>
-           <widget class="QLineEdit" name="NumFacAj">
-            <property name="geometry">
-             <rect>
-              <x>80</x>
-              <y>20</y>
-              <width>61</width>
-              <height>20</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-           <widget class="QLabel" name="label_29">
-            <property name="geometry">
-             <rect>
-              <x>220</x>
-              <y>20</y>
-              <width>71</width>
-              <height>16</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>Description</string>
-            </property>
-           </widget>
-           <widget class="QLabel" name="label_52">
-            <property name="geometry">
-             <rect>
-              <x>10</x>
-              <y>70</y>
-              <width>81</width>
-              <height>20</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>prixachat</string>
-            </property>
-           </widget>
-           <widget class="QPushButton" name="ajoutFacture">
-            <property name="geometry">
-             <rect>
-              <x>220</x>
-              <y>110</y>
-              <width>91</width>
-              <height>21</height>
-             </rect>
-            </property>
-            <property name="font">
-             <font>
-              <family>MS Shell Dlg 2</family>
-              <pointsize>8</pointsize>
-              <weight>50</weight>
-              <italic>false</italic>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton::hover
+          </property>
+          <property name="text">
+           <string> validier ajout</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="PrixVenteFacAj_2">
+          <property name="geometry">
+           <rect>
+            <x>230</x>
+            <y>70</y>
+            <width>71</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_33">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>61</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Num Facture</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="PrixachatAj_2">
+          <property name="geometry">
+           <rect>
+            <x>70</x>
+            <y>70</y>
+            <width>71</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_55">
+          <property name="geometry">
+           <rect>
+            <x>160</x>
+            <y>70</y>
+            <width>51</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>prixvente</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QTableView" name="tableView_3">
+         <property name="geometry">
+          <rect>
+           <x>510</x>
+           <y>70</y>
+           <width>621</width>
+           <height>181</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 9pt &quot;Rockwell&quot;;</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_34">
+         <property name="geometry">
+          <rect>
+           <x>770</x>
+           <y>30</y>
+           <width>141</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Palatino Linotype</family>
+           <pointsize>16</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Affichage</string>
+         </property>
+        </widget>
+        <widget class="QGroupBox" name="groupBox_9">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>189</y>
+           <width>331</width>
+           <height>71</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>MS Shell Dlg 2</family>
+           <pointsize>8</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
+         </property>
+         <property name="title">
+          <string>Suppression</string>
+         </property>
+         <widget class="QLabel" name="label_35">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>30</y>
+            <width>81</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Num facture</string>
+          </property>
+         </widget>
+         <widget class="QComboBox" name="comboBox_5">
+          <property name="geometry">
+           <rect>
+            <x>100</x>
+            <y>30</y>
+            <width>69</width>
+            <height>22</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="SuppFacture_2">
+          <property name="geometry">
+           <rect>
+            <x>220</x>
+            <y>30</y>
+            <width>84</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>MS Shell Dlg 2</family>
+            <pointsize>8</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton::hover
 {
 	background-color: qlineargradient(spread:pad, x1:0, y1:0.511, x2:1, y2:0.511, stop:0 rgba(0, 207, 179, 255),stop:1 rgb(108, 135, 255));
 
 }</string>
-            </property>
-            <property name="text">
-             <string> validier ajout</string>
-            </property>
-           </widget>
-           <widget class="QLineEdit" name="PrixVenteFacAj">
-            <property name="geometry">
-             <rect>
-              <x>230</x>
-              <y>70</y>
-              <width>71</width>
-              <height>20</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-           <widget class="QLabel" name="label_30">
-            <property name="geometry">
-             <rect>
-              <x>10</x>
-              <y>20</y>
-              <width>61</width>
-              <height>16</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>Num Facture</string>
-            </property>
-           </widget>
-           <widget class="QLineEdit" name="PrixachatAj">
-            <property name="geometry">
-             <rect>
-              <x>70</x>
-              <y>70</y>
-              <width>71</width>
-              <height>20</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-           <widget class="QLabel" name="label_53">
-            <property name="geometry">
-             <rect>
-              <x>160</x>
-              <y>70</y>
-              <width>51</width>
-              <height>20</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>prixvente</string>
-            </property>
-           </widget>
-          </widget>
-          <widget class="QTableView" name="tableView_2">
-           <property name="geometry">
-            <rect>
-             <x>570</x>
-             <y>70</y>
-             <width>621</width>
-             <height>181</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 9pt &quot;Rockwell&quot;;</string>
-           </property>
-          </widget>
+          </property>
+          <property name="text">
+           <string>supprimer</string>
+          </property>
          </widget>
-         <widget class="QWidget" name="tab_20">
-          <attribute name="title">
-           <string>Mailling</string>
-          </attribute>
-          <widget class="QLineEdit" name="server">
-           <property name="geometry">
-            <rect>
-             <x>240</x>
-             <y>10</y>
-             <width>241</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 11pt &quot;NSimSun&quot;;</string>
-           </property>
-           <property name="text">
-            <string>smtp.gmail.com</string>
-           </property>
-          </widget>
-          <widget class="QLineEdit" name="port">
-           <property name="geometry">
-            <rect>
-             <x>240</x>
-             <y>30</y>
-             <width>241</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>465</string>
-           </property>
-          </widget>
-          <widget class="QLineEdit" name="paswd">
-           <property name="geometry">
-            <rect>
-             <x>240</x>
-             <y>70</y>
-             <width>241</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>pes201456a</string>
-           </property>
-          </widget>
-          <widget class="QLineEdit" name="rcpt">
-           <property name="geometry">
-            <rect>
-             <x>240</x>
-             <y>90</y>
-             <width>241</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>hiimouss@gmail.com</string>
-           </property>
-          </widget>
-          <widget class="QPushButton" name="exitBtn">
-           <property name="geometry">
-            <rect>
-             <x>351</x>
-             <y>290</y>
-             <width>75</width>
-             <height>24</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 6pt &quot;MS Shell Dlg 2&quot;;
-font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
-           </property>
-           <property name="text">
-            <string>Quitter</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>:/images/images/remove.png</normaloff>:/images/images/remove.png</iconset>
-           </property>
-          </widget>
-          <widget class="QPushButton" name="sendBtn">
-           <property name="geometry">
-            <rect>
-             <x>270</x>
-             <y>290</y>
-             <width>75</width>
-             <height>24</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
-           </property>
-           <property name="text">
-            <string>Envoyer</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>:/images/images/send.png</normaloff>:/images/images/send.png</iconset>
-           </property>
-          </widget>
-          <widget class="QLineEdit" name="uname">
-           <property name="geometry">
-            <rect>
-             <x>240</x>
-             <y>50</y>
-             <width>241</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>qtprojet7@gmail.com</string>
-           </property>
-          </widget>
-          <widget class="QLineEdit" name="subject">
-           <property name="geometry">
-            <rect>
-             <x>240</x>
-             <y>110</y>
-             <width>241</width>
-             <height>20</height>
-            </rect>
-           </property>
-          </widget>
-          <widget class="QLabel" name="label_7">
-           <property name="geometry">
-            <rect>
-             <x>160</x>
-             <y>140</y>
-             <width>61</width>
-             <height>24</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
-           </property>
-           <property name="text">
-            <string>Message:</string>
-           </property>
-          </widget>
-          <widget class="QLabel" name="label_6">
-           <property name="geometry">
-            <rect>
-             <x>180</x>
-             <y>110</y>
-             <width>31</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
-           </property>
-           <property name="text">
-            <string>Objet:</string>
-           </property>
-          </widget>
-          <widget class="QLabel" name="label_4">
-           <property name="geometry">
-            <rect>
-             <x>150</x>
-             <y>50</y>
-             <width>71</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
-           </property>
-           <property name="text">
-            <string>Adresse:</string>
-           </property>
-          </widget>
-          <widget class="QLabel" name="label_5">
-           <property name="geometry">
-            <rect>
-             <x>150</x>
-             <y>70</y>
-             <width>81</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
-           </property>
-           <property name="text">
-            <string>Mot de passe:</string>
-           </property>
-          </widget>
-          <widget class="QLabel" name="label_15">
-           <property name="geometry">
-            <rect>
-             <x>150</x>
-             <y>90</y>
-             <width>81</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
-           </property>
-           <property name="text">
-            <string>Destinataire:</string>
-           </property>
-          </widget>
-          <widget class="QLabel" name="label_16">
-           <property name="geometry">
-            <rect>
-             <x>150</x>
-             <y>10</y>
-             <width>71</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
-</string>
-           </property>
-           <property name="text">
-            <string>Smtp-server:</string>
-           </property>
-          </widget>
-          <widget class="QLabel" name="label_22">
-           <property name="geometry">
-            <rect>
-             <x>150</x>
-             <y>30</y>
-             <width>81</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
-           </property>
-           <property name="text">
-            <string>Server port:</string>
-           </property>
-          </widget>
-          <widget class="QPushButton" name="deconnexion">
-           <property name="geometry">
-            <rect>
-             <x>550</x>
-             <y>290</y>
-             <width>91</width>
-             <height>31</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
-           </property>
-           <property name="text">
-            <string>Déconnexion</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>:/images/images/15495470391574055266-64.png</normaloff>:/images/images/15495470391574055266-64.png</iconset>
-           </property>
-          </widget>
-          <widget class="QPlainTextEdit" name="msg">
-           <property name="geometry">
-            <rect>
-             <x>240</x>
-             <y>130</y>
-             <width>241</width>
-             <height>141</height>
-            </rect>
-           </property>
-           <property name="plainText">
-            <string>aaaa
-
-</string>
-           </property>
-          </widget>
-         </widget>
+        </widget>
+        <widget class="QPushButton" name="pushButton_5">
+         <property name="geometry">
+          <rect>
+           <x>710</x>
+           <y>290</y>
+           <width>291</width>
+           <height>71</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>IMPORTER FICHIER EXCEL</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tab_6">
+        <attribute name="title">
+         <string>Statistique</string>
+        </attribute>
+        <widget class="QCustomPlot" name="plot" native="true">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>30</y>
+           <width>1081</width>
+           <height>421</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 0);</string>
+         </property>
         </widget>
        </widget>
       </widget>

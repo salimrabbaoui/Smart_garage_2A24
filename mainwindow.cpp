@@ -3,7 +3,6 @@
 #include"fournisseur.h"
 #include<QMessageBox>
 #include<QIntValidator>
-#include "smtp.h"
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QtPrintSupport>
@@ -16,7 +15,6 @@
 #include <QPainter>
 #include <QTextDocument>
 #include<QFileDialog>
-#include"smtp.h"
 #include<QPrinter>
 #include<QDialog>
 #include<QVBoxLayout>
@@ -56,12 +54,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
 ui->tabWidget_33->hide();
 
-ui->comboBox_2->setModel(temFacture.afficher());
-ui->comboBox_4->setModel(temFacture.afficher());
-  ui->tableView_2->setModel(temFacture.afficher());
+ui->comboBox_3->setModel(temFacture.afficher());
+ui->comboBox_5->setModel(temFacture.afficher());
+  ui->tableView_3->setModel(temFacture.afficher());
     ui->le_id->setValidator(new QIntValidator(0, 9999999, this));
     ui->le_num->setValidator(new QIntValidator(0, 99999999, this));
-    ui->NumFacAj->setValidator(new QIntValidator(0,99999,this));//numfactureproduit//
+    ui->NumFacAj_2->setValidator(new QIntValidator(0,99999,this));//numfactureproduit//
 
     ui->tab_fournisseur->setModel(f.afficher());
 
@@ -69,6 +67,8 @@ ui->comboBox_4->setModel(temFacture.afficher());
     connect(ui->exitBtn_2, SIGNAL(clicked()),this, SLOT(close()));
     connect(ui->exitBtn_3, SIGNAL(clicked()),this, SLOT(close()));
     connect(ui->exitBtn_4, SIGNAL(clicked()),this, SLOT(close()));
+    connect(ui->exitBtn_8, SIGNAL(clicked()),this, SLOT(close()));
+
 
 }
 
@@ -191,46 +191,14 @@ setCentralWidget(ui->tabWidget_33) ;
 }
 
 }
-void MainWindow::sendMail()
-{
-    Smtp* smtp = new Smtp(ui->uname->text(), ui->paswd->text(), ui->server->text(), ui->port->text().toInt());
-    connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
 
 
-    smtp->sendMail(ui->uname->text(), ui->rcpt->text() , ui->subject->text(),ui->msg->toPlainText());
-}
-
-void MainWindow::mailSent(QString status)
-{
-    if(status != "Message sent")
-        QMessageBox::warning( 0, tr( "Qt Simple SMTP client" ), tr( "Message sent!\n\n" ) );
-}
-
-
-
-void MainWindow::browse()
-{
-ui->uname->setText("");
-ui->rcpt->setText("");
-ui->paswd->setText("");
-ui->subject->setText("");
-ui->msg->setPlainText("");
-}
-void MainWindow::on_sendBtn_clicked()
-{
-    QMessageBox::warning( 0, tr( "Qt Simple SMTP client" ), tr( "Message sent!\n\n" ) );
-    connect(ui->sendBtn, SIGNAL(clicked()),this, SLOT(sendMail()));
-    connect(ui->exitBtn, SIGNAL(clicked()),this, SLOT(close()));
-    connect(ui->deconnexion, SIGNAL(clicked()), this, SLOT(browse()));
-
-}
-
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_pushButton_5_clicked()
 {
 
 
     QTableView *table;
-               table = ui->tableView_2;
+               table = ui->tableView_3;
 
                QString filters("CSV files (.csv);;All files (.*)");
                QString defaultFilter("CSV files (*.csv)");
@@ -267,19 +235,19 @@ void MainWindow::on_pushButton_clicked()
                }
 
 }
-void MainWindow::on_ajoutFacture_clicked()
+void MainWindow::on_ajoutFacture_2_clicked()
 {facture temFacture;
 
-    int numfacture=ui->NumFacAj->text().toInt();
-    int prixachat=ui->PrixachatAj->text().toInt();
-    int prixvente=ui->PrixVenteFacAj->text().toInt();
+    int numfacture=ui->NumFacAj_2->text().toInt();
+    int prixachat=ui->PrixachatAj_2->text().toInt();
+    int prixvente=ui->PrixVenteFacAj_2->text().toInt();
     facture F(numfacture,prixachat,prixvente);
     bool test=F.ajouter();
     QMessageBox msgBox;
     if(test)
-    { ui->tableView_2->setModel(temFacture.afficher());
-        ui->comboBox_2->setModel(temFacture.afficher());
-        ui->comboBox_4->setModel(temFacture.afficher());
+    { ui->tableView_3->setModel(temFacture.afficher());
+        ui->comboBox_3->setModel(temFacture.afficher());
+        ui->comboBox_5->setModel(temFacture.afficher());
 
         msgBox.setText("ajouter avec succés");}
     else
@@ -292,13 +260,13 @@ void MainWindow::on_ajoutFacture_clicked()
 
 
 
-void MainWindow::on_SuppFacture_clicked()
+void MainWindow::on_SuppFacture_2_clicked()
 {
 
-    int numfacture=ui->comboBox_4->currentText().toInt();
+    int numfacture=ui->comboBox_5->currentText().toInt();
     facture F;
     bool test=F.supprimer(numfacture);
-    if(ui->comboBox_4->currentText().contains(QRegExp("^[1-9]"))==0){
+    if(ui->comboBox_5->currentText().contains(QRegExp("^[1-9]"))==0){
      (tr("Notification"),tr(" liste vide"));
         QMessageBox::information(nullptr, QObject::tr("ERREUR"),
                                QObject::tr("ERREUR.\n"
@@ -307,12 +275,12 @@ void MainWindow::on_SuppFacture_clicked()
     else {
     if (test)
     {    (tr("Notification"),tr("Facture supprimée"));
-        ui->tableView_2->setModel(F.afficher());
+        ui->tableView_3->setModel(F.afficher());
         QMessageBox::information(nullptr, QObject::tr("suppression facture"),
                     QObject::tr("facture supprimé.\n"
                                 "Click Cancel to exit."), QMessageBox::Cancel);
-        ui->comboBox_2->setModel(F.afficher());
-        ui->comboBox_4->setModel(F.afficher());
+        ui->comboBox_3->setModel(F.afficher());
+        ui->comboBox_5->setModel(F.afficher());
 
 
     }
@@ -320,16 +288,16 @@ void MainWindow::on_SuppFacture_clicked()
     }
 }
 
-void MainWindow::on_ModiFacture_clicked()
+void MainWindow::on_ModiFacture_2_clicked()
 
 {
-    int numfacture =ui->comboBox_2->currentText().toInt();
-    int prixachat=ui->PrixachatModpr->text().toInt();
-    int prixvente=ui->PrixventeModfac->text().toInt();
+    int numfacture =ui->comboBox_3->currentText().toInt();
+    int prixachat=ui->PrixachatModpr_2->text().toInt();
+    int prixvente=ui->PrixventeModfac_2->text().toInt();
 
       facture F( numfacture,prixachat,prixvente);
       bool test=F.modifier(numfacture);
-      if(ui->comboBox_2->currentText().contains(QRegExp("^[1-9]"))==0){
+      if(ui->comboBox_3->currentText().contains(QRegExp("^[1-9]"))==0){
       (tr("Notification"),tr(" liste vide"));
           QMessageBox::information(nullptr, QObject::tr("ERREUR"),
                                  QObject::tr("ERREUR.\n"
@@ -338,29 +306,29 @@ void MainWindow::on_ModiFacture_clicked()
       else{
       if(test)
     { (tr("Notification"),tr(" Modification validée"));
-          ui->comboBox_2->setModel(F.afficher());
-          ui->tableView_2->setModel(F.afficher());
-          ui->comboBox_4->setModel(F.afficher());
+          ui->comboBox_3->setModel(F.afficher());
+          ui->tableView_3->setModel(F.afficher());
+          ui->comboBox_5->setModel(F.afficher());
 
     QMessageBox::information(nullptr, QObject::tr("modifier une facture"),
                       QObject::tr("Facture modifiée.\n"
                                   "Click Cancel to exit."), QMessageBox::Cancel);
-ui->comboBox_2->setModel(F.afficher());
+ui->comboBox_3->setModel(F.afficher());
     }
 }
 }
 
 
-void MainWindow::on_tabWidget_4_currentChanged(int index)
+void MainWindow::on_tabWidget_33_currentChanged(int index)
 {fournisseur f;
     // background //
               QLinearGradient gradient(0, 0, 0, 400);
               gradient.setColorAt(0, QColor(90, 90, 90));
               gradient.setColorAt(0.38, QColor(105, 105, 105));
               gradient.setColorAt(1, QColor(70, 70, 70));
-              ui->plott->setBackground(QBrush(gradient));
+              ui->plot->setBackground(QBrush(gradient));
 
-              QCPBars *amande = new QCPBars(ui->plott->xAxis, ui->plott->yAxis);
+              QCPBars *amande = new QCPBars(ui->plot->xAxis, ui->plot->yAxis);
               amande->setAntialiased(false);
               amande->setStackingGap(1);
                //couleurs
@@ -375,47 +343,74 @@ void MainWindow::on_tabWidget_4_currentChanged(int index)
 
               QSharedPointer<QCPAxisTickerText> textTicker(new QCPAxisTickerText);
               textTicker->addTicks(ticks, labels);
-              ui->plott->xAxis->setTicker(textTicker);
-              ui->plott->xAxis->setTickLabelRotation(60);
-              ui->plott->xAxis->setSubTicks(false);
-              ui->plott->xAxis->setTickLength(0, 4);
-              ui->plott->xAxis->setRange(0, 8);
-              ui->plott->xAxis->setBasePen(QPen(Qt::white));
-              ui->plott->xAxis->setTickPen(QPen(Qt::white));
-              ui->plott->xAxis->grid()->setVisible(true);
-              ui->plott->xAxis->grid()->setPen(QPen(QColor(130, 130, 130), 0, Qt::DotLine));
-              ui->plott->xAxis->setTickLabelColor(Qt::white);
-              ui->plott->xAxis->setLabelColor(Qt::white);
+              ui->plot->xAxis->setTicker(textTicker);
+              ui->plot->xAxis->setTickLabelRotation(60);
+              ui->plot->xAxis->setSubTicks(false);
+              ui->plot->xAxis->setTickLength(0, 4);
+              ui->plot->xAxis->setRange(0, 8);
+              ui->plot->xAxis->setBasePen(QPen(Qt::white));
+              ui->plot->xAxis->setTickPen(QPen(Qt::white));
+              ui->plot->xAxis->grid()->setVisible(true);
+              ui->plot->xAxis->grid()->setPen(QPen(QColor(130, 130, 130), 0, Qt::DotLine));
+              ui->plot->xAxis->setTickLabelColor(Qt::white);
+              ui->plot->xAxis->setLabelColor(Qt::white);
 
               // axe des ordonnées
-              ui->plott->yAxis->setRange(0,10);
-              ui->plott->yAxis->setPadding(5);
-              ui->plott->yAxis->setLabel("Statistiques");
-              ui->plott->yAxis->setBasePen(QPen(Qt::white));
-              ui->plott->yAxis->setTickPen(QPen(Qt::white));
-              ui->plott->yAxis->setSubTickPen(QPen(Qt::white));
-              ui->plott->yAxis->grid()->setSubGridVisible(true);
-              ui->plott->yAxis->setTickLabelColor(Qt::white);
-              ui->plott->yAxis->setLabelColor(Qt::white);
-              ui->plott->yAxis->grid()->setPen(QPen(QColor(130, 130, 130), 0, Qt::SolidLine));
-              ui->plott->yAxis->grid()->setSubGridPen(QPen(QColor(130, 130, 130), 0, Qt::DotLine));
+              ui->plot->yAxis->setRange(0,10);
+              ui->plot->yAxis->setPadding(5);
+              ui->plot->yAxis->setLabel("Statistiques");
+              ui->plot->yAxis->setBasePen(QPen(Qt::white));
+              ui->plot->yAxis->setTickPen(QPen(Qt::white));
+              ui->plot->yAxis->setSubTickPen(QPen(Qt::white));
+              ui->plot->yAxis->grid()->setSubGridVisible(true);
+              ui->plot->yAxis->setTickLabelColor(Qt::white);
+              ui->plot->yAxis->setLabelColor(Qt::white);
+              ui->plot->yAxis->grid()->setPen(QPen(QColor(130, 130, 130), 0, Qt::SolidLine));
+              ui->plot->yAxis->grid()->setSubGridPen(QPen(QColor(130, 130, 130), 0, Qt::DotLine));
 
               // ajout des données  (statistiques du fournisseur)//
 
               QVector<double> PlaceData;
-              QSqlQuery q1("select type_voiture from FOURNISSEUR");
+              QSqlQuery q1("select id  from FOURNISSEUR");
               while (q1.next()) {
                             int  nbr_fautee = q1.value(0).toInt();
                             PlaceData<< nbr_fautee;
                               }
               amande->setData(ticks, PlaceData);
 
-              ui->plott->legend->setVisible(true);
-              ui->plott->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignTop|Qt::AlignHCenter);
-              ui->plott->legend->setBrush(QColor(255, 255, 255, 100));
-              ui->plott->legend->setBorderPen(Qt::NoPen);
+              ui->plot->legend->setVisible(true);
+              ui->plot->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignTop|Qt::AlignHCenter);
+              ui->plot->legend->setBrush(QColor(255, 255, 255, 100));
+              ui->plot->legend->setBorderPen(Qt::NoPen);
               QFont legendFont = font();
               legendFont.setPointSize(5);
-              ui->plott->legend->setFont(legendFont);
-              ui->plott->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
+              ui->plot->legend->setFont(legendFont);
+              ui->plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
 }
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    QString link="https://mail.google.com/mail/u/0/#inbox?compose=new";
+    QDesktopServices::openUrl(link);
+
+
+
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    fournisseur F;
+        QString crit=ui->comboBox->currentText();
+        if(crit=="Type_produit")
+        {
+            ui->tableView_tri->setModel(F.trietype_voiture());
+        }
+        else
+        {
+            ui->tableView_tri->setModel(F.trieid());
+        }
+
+}
+
+
+

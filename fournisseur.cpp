@@ -150,7 +150,7 @@ void fournisseur::statistique(QVector<double>* ticks,QVector<QString> *labels)
 {
     QSqlQuery q;
     int i=0;
-    q.exec("select type_voiture from FOURNISSEUR");
+    q.exec("select id  from FOURNISSEUR");
     while (q.next())
     {
         QString identifiant = q.value(0).toString();
@@ -158,4 +158,36 @@ void fournisseur::statistique(QVector<double>* ticks,QVector<QString> *labels)
         *ticks<<i;
         *labels <<identifiant;
     }
+}
+QSqlQueryModel *fournisseur:: trieid()
+{
+    QSqlQueryModel *model=new QSqlQueryModel();
+    model->setQuery("select *from FOURNISSEUR order by ID" );
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("NUM"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("EMAIL"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("ADRESSE"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("TYPE_VOITURE"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("NOM_SOCIETE"));
+
+
+ return model;
+
+}
+QSqlQueryModel *fournisseur:: trietype_voiture()
+{
+    QSqlQueryModel *model=new QSqlQueryModel();
+
+    model->setQuery("select * from FOURNISSEUR order by TYPE_VOITURE" );
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("NUM"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("EMAIL"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("ADRESSE"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("TYPE_VOITURE"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("NOM_SOCIETE"));
+
+
+
+ return model;
+
 }
