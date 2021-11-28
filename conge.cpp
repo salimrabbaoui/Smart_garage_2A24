@@ -14,6 +14,7 @@ Conge::Conge()
     date="";
     etat="";
 }
+//ok
 Conge::Conge(int cin_c ,int id_c,QString duree,QString date,QString etat)
 {this->cin_c=cin_c;this->id_c=id_c; this->duree=duree; this->date=date;this->etat=etat;}
 int Conge::getcin_c(){return cin_c;}
