@@ -29,6 +29,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    conge.cpp \
+    employe.cpp \
     facture.cpp \
     fournisseur.cpp \
         main.cpp \
@@ -37,6 +39,8 @@ SOURCES += \
     qcustomplot.cpp
 
 HEADERS += \
+    conge.h \
+    employe.h \
     facture.h \
     fournisseur.h \
         mainwindow.h \

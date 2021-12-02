@@ -2,6 +2,9 @@
 #include "ui_mainwindow.h"
 #include"fournisseur.h"
 #include<QMessageBox>
+#include "conge.h"
+#include "employe.h"
+
 #include<QIntValidator>
 #include <QPrinter>
 #include <QPrintDialog>
@@ -51,9 +54,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     fournisseur f;
     facture temFacture;
+    Employe E;
+    Conge C;
 
-ui->tabWidget_33->hide();
-
+ui->tabWidget->hide();
 ui->comboBox_3->setModel(temFacture.afficher());
 ui->comboBox_5->setModel(temFacture.afficher());
   ui->tableView_3->setModel(temFacture.afficher());
@@ -68,6 +72,19 @@ ui->comboBox_5->setModel(temFacture.afficher());
     connect(ui->exitBtn_3, SIGNAL(clicked()),this, SLOT(close()));
     connect(ui->exitBtn_4, SIGNAL(clicked()),this, SLOT(close()));
     connect(ui->exitBtn_8, SIGNAL(clicked()),this, SLOT(close()));
+
+
+
+    //employe
+    ui->le_age->setValidator(new QIntValidator(0,99,this));
+    ui->le_cin->setValidator(new QIntValidator(0,9999999,this));
+    ui->tab_employe->setModel(E.afficher());
+    ui->tab_tri->setModel(E.afficher());
+    //conge
+    ui->lecin_c->setValidator(new QIntValidator(0,9999999,this));
+    ui->leid_c->setValidator(new QIntValidator(0,9999999,this));
+
+    ui->tab_conge->setModel(C.afficher_c());
 
 
 }
@@ -178,9 +195,9 @@ void MainWindow::on_connecter_clicked()
     {
         if (password == 1234)
         { QMessageBox::information(this, "Login","Bienvenue");
-            ui->tabWidget_33->show();
+            ui->tabWidget->show();
 
-setCentralWidget(ui->tabWidget_33) ;
+setCentralWidget(ui->tabWidget) ;
 
 
 
@@ -411,6 +428,302 @@ void MainWindow::on_pushButton_3_clicked()
         }
 
 }
+/*gestion des employes*/
+void MainWindow::on_pb_ajouter_2_clicked()
+{
+    int cin=ui->le_cin->text().toInt();
+
+    QString Nom=ui->le_nom->text();
+    QString Prenom=ui->le_prenom->text();
+    int age=ui->le_age->text().toInt();
+    QString Type=ui->le_type->text();
+    Employe E(cin,Nom,Prenom,age,Type);
+    bool test=E.ajouter();
+    QMessageBox msgBox;
+
+    if(test)
+{
+        ui->tab_employe->setModel(E.afficher());
+        msgBox.setText("Ajout avec succes.");
+
+    }else
+        msgBox.setText("Echec d'ajout");
+        msgBox.exec();
+
+}
+
+
+void MainWindow::on_pb_supprimer_2_clicked()
+{
+    Employe E; E.setcin(ui->le_cin_supp->text().toInt());
+    bool test=E.supprimer(E.getcin());
+     QMessageBox msgBox;
+     if(test)
+ {
+         ui->tab_employe->setModel(E.afficher());
+         msgBox.setText("Suppression avec succes.");
+
+     }else
+         msgBox.setText("Echec de suppression");
+         msgBox.exec();
+}
+
+
+
+void MainWindow::on_pb_modifier_2_clicked()
+{
+    int cin=ui->le_cin2->text().toInt();
+
+
+
+    QString Nom=ui->le_nom2->text();
+    QString Prenom=ui->le_prenom2->text();
+    int age=ui->le_age2->text().toInt();
+     QString Type=ui->le_type2->text();
+
+
+
+   Employe E(cin,Nom,Prenom,age,Type);
+     bool test=E.modifier(cin);
+     if(test)
+   {
+
+         ui->tab_employe->setModel(E.afficher());
+   QMessageBox::information(nullptr, QObject::tr("modifier un employe"),
+                     QObject::tr("employe modifié.\n"
+                                 "Click Cancel to exit."), QMessageBox::Cancel);
+
+   }
+     else
+         QMessageBox::critical(nullptr, QObject::tr("modifier un employe"),
+                     QObject::tr("Erreur !.\n"
+                                 "Click Cancel to exit."), QMessageBox::Cancel);
+}
+
+
+
+void MainWindow::on_pb_rechercher_clicked()
+{
+    class Employe E ;
+        ui->tab_employe1->setModel(E.afficher());
+
+
+           E.recherche(ui);
+
+}
+
+void MainWindow::on_ajouter_conge_clicked()
+{
+    int cin_c=ui->lecin_c->text().toInt();
+
+    int id_c=ui->leid_c->text().toInt();
+
+    QString duree=ui->leduree_c->text();
+    QString date=ui->ledate_c->text();
+    QString etat=ui->leetat_c->text();
+    Conge C(cin_c,id_c,duree,date,etat);
+    bool test=C.ajouter_c();
+    QMessageBox msgBox;
+
+    if(test)
+{
+        ui->tab_conge->setModel(C.afficher_c());
+        msgBox.setText("Ajout avec succes.");
+
+    }else
+        msgBox.setText("Echec d'ajout");
+        msgBox.exec();
+}
+
+void MainWindow::on_supp_conge_clicked()
+{ Conge C1; C1.setcin_c(ui->lecin_c->text().toInt());//convertir la chaine saisie en un entier car lattribut id est de type int
+    bool test=C1.supprimer_c(C1.getcin_c());
+
+    QMessageBox msgBox;
+   if (test)
+   {
+       ui->tab_conge->setModel(C1.afficher_c());
+       msgBox.setText("Suppression avec succes");
+
+   }
+   else
+     msgBox.setText("Echec de suppression");
+   msgBox.exec();
+}
+
+
+void MainWindow::on_pb_pdf_clicked()
+{
+    QString strStream;
+            QTextStream out(&strStream);
+
+
+
+            const int rowCount = ui->tab_conge->model()->rowCount();
+            const int columnCount = ui->tab_conge->model()->columnCount();
+
+            out <<  "<html>\n"
+                "<head>\n"
+
+                "<meta Content=\"Text/html; charset=Windows-1251\">\n"
+                <<  QString("<title>%60 les postes</title>\n").arg("poste")
+                <<  "</head>\n"
+                "<body bgcolor=#ffffff link=#5000A0>\n"
+                "<table border=1 cellspacing=0 cellpadding=2>\n";
+            out << "<thead><tr bgcolor=#f0f0f0>";
+            for (int column = 0; column < columnCount; column++)
+                if (! ui->tab_conge->isColumnHidden(column))
+                    out << QString("<th>%1</th>").arg(ui->tab_conge->model()->headerData(column, Qt::Horizontal).toString());
+            out << "</tr></thead>\n";
+
+            for (int row = 0; row < rowCount; row++) {
+                out << "<tr>";
+                for (int column = 0; column < columnCount; column++) {
+                    if (!ui->tab_conge->isColumnHidden(column)) {
+                        QString data = ui->tab_conge->model()->data(ui->tab_conge->model()->index(row, column)).toString().simplified();
+                        out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                    }
+                }
+                out << "</tr>\n";
+            }
+            out <<  "</table>\n"
+                "</body>\n"
+                "</html>\n";
+
+            QTextDocument *document = new QTextDocument();
+            document->setHtml(strStream);
+
+            QPrinter printer;
+
+            QPrintDialog *dialog = new QPrintDialog(&printer, NULL);
+            if (dialog->exec() == QDialog::Accepted) {
+                document->print(&printer);
+            }
+
+            delete document;
+}
+
+
+void MainWindow::on_pb_imp_clicked()
+{QString strStream;
+    QTextStream out(&strStream);
+
+
+
+    const int rowCount = ui->tab_employe->model()->rowCount();
+    const int columnCount = ui->tab_employe->model()->columnCount();
+
+    out <<  "<html>\n"
+        "<head>\n"
+
+        "<meta Content=\"Text/html; charset=Windows-1251\">\n"
+        <<  QString("<title>%60 les postes</title>\n").arg("poste")
+        <<  "</head>\n"
+        "<body bgcolor=#ffffff link=#5000A0>\n"
+        "<table border=1 cellspacing=0 cellpadding=2>\n";
+    out << "<thead><tr bgcolor=#f0f0f0>";
+    for (int column = 0; column < columnCount; column++)
+        if (! ui->tab_employe->isColumnHidden(column))
+            out << QString("<th>%1</th>").arg(ui->tab_employe->model()->headerData(column, Qt::Horizontal).toString());
+    out << "</tr></thead>\n";
+
+    for (int row = 0; row < rowCount; row++) {
+        out << "<tr>";
+        for (int column = 0; column < columnCount; column++) {
+            if (!ui->tab_employe->isColumnHidden(column)) {
+                QString data = ui->tab_employe->model()->data(ui->tab_employe->model()->index(row, column)).toString().simplified();
+                out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+            }
+        }
+        out << "</tr>\n";
+    }
+    out <<  "</table>\n"
+        "</body>\n"
+        "</html>\n";
+
+    QTextDocument *document = new QTextDocument();
+    document->setHtml(strStream);
+
+    QPrinter printer;
+
+    QPrintDialog *dialog = new QPrintDialog(&printer, NULL);
+    if (dialog->exec() == QDialog::Accepted) {
+        document->print(&printer);
+    }
+
+    delete document;
+
+}
+
+
+
+void MainWindow::on_modifier_conge_clicked()
+{int cin_c=ui->le_cin_modif->text().toInt();
+
+    int id_c=ui->le_id_modif->text().toInt();
+    QString date =ui->la_date_modif->text();
+    QString duree=ui->la_duree_modif->text();
+
+     QString etat=ui->leetat_c->text();
+
+
+
+   Conge C(cin_c,id_c,duree,date,etat);
+     bool test=C.modifier_c(cin_c);
+     if(test)
+   {
+
+         ui->tab_conge->setModel(C.afficher_c());
+   QMessageBox::information(nullptr, QObject::tr("modifier un employe"),
+                     QObject::tr("employe modifié.\n"
+                                 "Click Cancel to exit."), QMessageBox::Cancel);
+
+   }
+     else
+         QMessageBox::critical(nullptr, QObject::tr("modifier un employe"),
+                     QObject::tr("Erreur !.\n"
+                                 "Click Cancel to exit."), QMessageBox::Cancel);
+
+}
+
+
+
+void MainWindow::on_pb_tri_clicked()
+{
+    Employe E;
+
+    ui->tab_tri->setModel(E.afficher_Nom());
+    }
+
+
+
+void MainWindow::on_pushButton_clicked()
+{
+        QString link="https://mail.google.com/mail/u/0/#inbox";
+        QDesktopServices::openUrl(QUrl (link)) ;
+    }
+
+
+void MainWindow::on_pb_type_clicked()
+{ Employe E;
+    ui->tab_tri->setModel(E.afficher_SERVICE());
+}
+
+void MainWindow::on_pb_cin_clicked()
+{Employe E;
+    ui->tab_tri->setModel(E.afficher_CIN());
+
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
