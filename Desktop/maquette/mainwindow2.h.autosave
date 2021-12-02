@@ -1,0 +1,29 @@
+
+
+#ifndef MAINWINDOW2_H
+#define MAINWINDOW2_H
+
+#include <QMainWindow>
+#include "mainwindow.h"
+#include "fournisseur.h"
+
+QT_BEGIN_NAMESPACE
+namespace Ui { class MainWindow_1; }
+QT_END_NAMESPACE
+
+class MainWindow_1: public QMainWindow
+{
+    Q_OBJECT
+
+public:
+    MainWindow_1(QWidget *parent = nullptr);
+    ~MainWindow_1();
+
+private slots:
+    void on_pushButton_clicked();
+
+private:
+    Ui::MainWindow_1 *uii;
+   fournisseur *home;
+};
+#endif // MAINWINDOW2_H
