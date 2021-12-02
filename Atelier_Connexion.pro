@@ -4,11 +4,11 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql \
+QT       += core gui \
     quick
-QT += core gui network
-QT += network
-QT +=printsupport
+QT       += sql
+QT       += network
+QT       += printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -30,6 +30,10 @@ CONFIG += c++11
 
 SOURCES += \
     client.cpp \
+    conge.cpp \
+    employe.cpp \
+    facture.cpp \
+    fournisseur.cpp \
         main.cpp \
         mainwindow.cpp \
     connection.cpp \
@@ -38,6 +42,10 @@ SOURCES += \
 
 HEADERS += \
     client.h \
+    conge.h \
+    employe.h \
+    facture.h \
+    fournisseur.h \
         mainwindow.h \
     connection.h \
     qcustomplot.h \

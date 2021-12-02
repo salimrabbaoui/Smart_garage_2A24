@@ -1,6 +1,4 @@
 #include "connection.h"
-//test tutoriel git
-
 
 Connection::Connection()
 {
@@ -15,9 +13,10 @@ db.setUserName("salim");//inserer nom de l'utilisateur
 db.setPassword("esprit1");//inserer mot de passe de cet utilisateur
 
 if (db.open())
+{
 test=true;
 
-
+}
 
 
 
