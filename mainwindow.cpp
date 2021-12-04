@@ -57,7 +57,6 @@
 #include<QVariant>
 #include <QDateTime>
 #include <QPrinter>
-#include  "smtp.h"
 
 
 
@@ -373,56 +372,7 @@ void MainWindow::on_pb_cin_clicked()
 
 }
 
-void MainWindow::sendMail()
-{
-    Smtp* smtp = new Smtp("mohamedamine.abdessayed@esprit.tn",ui->mail_pass->text(), "smtp.gmail.com");
-    connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
 
-    if( !files.isEmpty() )
-        smtp->sendMail("mohamedamine.abdessayed@esprit.tn", ui->rcpt->text() , ui->subject->text(),ui->msg->toPlainText(), files );
-    else
-        smtp->sendMail("mohamedamine.abdessayed@esprit.tn",ui->rcpt->text() , ui->subject->text(),ui->msg->toPlainText());
-}
-
-
-void MainWindow::mailSent(QString status)
-{
-    if(status == "Message sent")
-        QMessageBox::warning( nullptr, tr( "Qt Simple SMTP client" ), tr( "Message sent!\n\n" ) );
-    ui->rcpt->clear();
-    ui->subject->clear();
-    ui->file->clear();
-    ui->msg->clear();
-    ui->mail_pass->clear();
-}
-
-
-
-void MainWindow::browse()
-{
-    files.clear();
-
-    QFileDialog dialog(this);
-    dialog.setDirectory(QDir::homePath());
-    dialog.setFileMode(QFileDialog::ExistingFiles);
-
-    if (dialog.exec())
-        files = dialog.selectedFiles();
-
-    QString fileListString;
-    foreach(QString file, files)
-        fileListString.append( "\"" + QFileInfo(file).fileName() + "\" " );
-
-    ui->file->setText( fileListString );
-}
-void MainWindow::on_sendBtn_clicked()
-{
-    connect(ui->sendBtn, SIGNAL(clicked()),this, SLOT(sendMail()));
-    QMessageBox::warning( 0, tr( "Qt Simple SMTP client" ), tr( "Message sent!\n\n" ) );
-
-
-
-}
 
 /* void MainWindow::on_pushButton_clicked()
 {

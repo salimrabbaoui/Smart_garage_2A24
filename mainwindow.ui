@@ -53,7 +53,7 @@ color: rgb(255, 170, 0);
 </string>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -404,7 +404,7 @@ color: rgb(255, 170, 0);
         </rect>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tab_11">
         <attribute name="title">
@@ -514,129 +514,17 @@ background-color: rgb(255, 255, 255);</string>
           <string>Cin</string>
          </property>
         </widget>
-       </widget>
-       <widget class="QWidget" name="tab_13">
-        <attribute name="title">
-         <string>Mailing</string>
-        </attribute>
         <widget class="QPushButton" name="pushButton">
          <property name="geometry">
           <rect>
-           <x>20</x>
-           <y>110</y>
+           <x>220</x>
+           <y>310</y>
            <width>93</width>
            <height>28</height>
           </rect>
          </property>
          <property name="text">
           <string>Link</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_23">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>20</y>
-           <width>251</width>
-           <height>71</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Consulter la boite Mail :</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="mail_pass">
-         <property name="geometry">
-          <rect>
-           <x>802</x>
-           <y>20</y>
-           <width>141</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="echoMode">
-          <enum>QLineEdit::Password</enum>
-         </property>
-         <property name="placeholderText">
-          <string>your mail password</string>
-         </property>
-        </widget>
-        <widget class="QTextEdit" name="msg">
-         <property name="geometry">
-          <rect>
-           <x>290</x>
-           <y>126</y>
-           <width>651</width>
-           <height>291</height>
-          </rect>
-         </property>
-         <property name="placeholderText">
-          <string>type your message here ...</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="rcpt">
-         <property name="geometry">
-          <rect>
-           <x>290</x>
-           <y>20</y>
-           <width>491</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="placeholderText">
-          <string>recipient</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="browseBtn">
-         <property name="geometry">
-          <rect>
-           <x>867</x>
-           <y>89</y>
-           <width>75</width>
-           <height>24</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Browse ...</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="file">
-         <property name="geometry">
-          <rect>
-           <x>290</x>
-           <y>90</y>
-           <width>571</width>
-           <height>23</height>
-          </rect>
-         </property>
-         <property name="placeholderText">
-          <string>attachement here</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="subject">
-         <property name="geometry">
-          <rect>
-           <x>290</x>
-           <y>54</y>
-           <width>651</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="placeholderText">
-          <string>subject</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="sendBtn">
-         <property name="geometry">
-          <rect>
-           <x>290</x>
-           <y>420</y>
-           <width>651</width>
-           <height>23</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Send</string>
          </property>
         </widget>
        </widget>
